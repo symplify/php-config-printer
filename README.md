@@ -9,3 +9,14 @@ Print Symfony services array with configuration to to plain PHP file format than
 ```bash
 composer require migrify/php-config-printer --dev
 ```
+
+## Use
+
+```php
+class SomeClass
+{
+    public function __construct()
+    {
+    }
+}
+```
