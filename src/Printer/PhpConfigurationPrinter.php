@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\Printer;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\ShouldNotHappenException;
 use Migrify\PhpConfigPrinter\NodeTraverser\ImportFullyQualifiedNamesNodeTraverser;
+use Migrify\PhpConfigPrinter\Printer\NodeDecorator\EmptyLineNodeDecorator;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Closure;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Scalar\LNumber;
-use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Declare_;
 use PhpParser\Node\Stmt\DeclareDeclare;
-use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeFinder;
 use PhpParser\PrettyPrinter\Standard;
@@ -38,12 +35,19 @@ final class PhpConfigurationPrinter extends Standard
      */
     private $nodeFinder;
 
+    /**
+     * @var EmptyLineNodeDecorator
+     */
+    private $emptyLineNodeDecorator;
+
     public function __construct(
         ImportFullyQualifiedNamesNodeTraverser $importFullyQualifiedNamesNodeTraverser,
+        EmptyLineNodeDecorator $emptyLineNodeDecorator,
         NodeFinder $nodeFinder
     ) {
         $this->importFullyQualifiedNamesNodeTraverser = $importFullyQualifiedNamesNodeTraverser;
         $this->nodeFinder = $nodeFinder;
+        $this->emptyLineNodeDecorator = $emptyLineNodeDecorator;
 
         parent::__construct();
     }
@@ -51,7 +55,7 @@ final class PhpConfigurationPrinter extends Standard
     public function prettyPrintFile(array $stmts): string
     {
         $stmts = $this->importFullyQualifiedNames($stmts);
-        $this->completeEmptyLines($stmts);
+        $this->emptyLineNodeDecorator->decorate($stmts);
 
         // adds "declare(strict_types=1);" to every file
         $stmts = $this->prependStrictTypesDeclare($stmts);
@@ -101,49 +105,6 @@ final class PhpConfigurationPrinter extends Standard
     {
         $nextCallIndentReplacement = ')' . PHP_EOL . Strings::indent('->', 8, ' ');
         return Strings::replace($content, '#\)->#', $nextCallIndentReplacement);
-    }
-
-    /**
-     * @todo decouple to own service
-     */
-    private function completeEmptyLines(array $stmts): void
-    {
-        /** @var Closure|null $closure */
-        $closure = $this->nodeFinder->findFirstInstanceOf($stmts, Closure::class);
-        if ($closure === null) {
-            throw new ShouldNotHappenException();
-        }
-
-        $newStmts = [];
-
-        foreach ($closure->stmts as $key => $closureStmt) {
-            if ($this->shouldAddEmptyLineBeforeStatement($key, $closureStmt)) {
-                $newStmts[] = new Nop();
-            }
-
-            $newStmts[] = $closureStmt;
-        }
-
-        $closure->stmts = $newStmts;
-    }
-
-    private function shouldAddEmptyLineBeforeStatement(int $key, Stmt $stmt): bool
-    {
-        // do not add space before first item
-        if ($key === 0) {
-            return false;
-        }
-
-        if (! $stmt instanceof Expression) {
-            return false;
-        }
-
-        $expr = $stmt->expr;
-        if ($expr instanceof Assign) {
-            return true;
-        }
-
-        return $expr instanceof MethodCall;
     }
 
     /**
