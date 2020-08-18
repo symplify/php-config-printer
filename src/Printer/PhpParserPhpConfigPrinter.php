@@ -17,7 +17,7 @@ use PhpParser\Node\Stmt\DeclareDeclare;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\PrettyPrinter\Standard;
 
-final class PhpConfigurationPrinter extends Standard
+final class PhpParserPhpConfigPrinter extends Standard
 {
     /**
      * @var string
@@ -46,7 +46,7 @@ final class PhpConfigurationPrinter extends Standard
 
     public function prettyPrintFile(array $stmts): string
     {
-        $stmts = $this->importFullyQualifiedNames($stmts);
+        $stmts = $this->importFullyQualifiedNamesNodeTraverser->traverseNodes($stmts);
         $this->emptyLineNodeDecorator->decorate($stmts);
 
         // adds "declare(strict_types=1);" to every file
@@ -103,15 +103,6 @@ final class PhpConfigurationPrinter extends Standard
      * @param Node[] $stmts
      * @return Node[]
      */
-    private function importFullyQualifiedNames(array $stmts): array
-    {
-        return $this->importFullyQualifiedNamesNodeTraverser->traverseNodes($stmts);
-    }
-
-    /**
-     * @param Node[] $stmts
-     * @return Node[]
-     */
     private function prependStrictTypesDeclare(array $stmts): array
     {
         $strictTypesDeclare = $this->createStrictTypesDeclare();
@@ -121,7 +112,6 @@ final class PhpConfigurationPrinter extends Standard
     private function createStrictTypesDeclare(): Declare_
     {
         $declareDeclare = new DeclareDeclare('strict_types', new LNumber(1));
-
         return new Declare_([$declareDeclare]);
     }
 }
