@@ -15,6 +15,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure();
 
     $services->load('Migrify\PhpConfigPrinter\\', __DIR__ . '/../src');
+
     $services->set(NodeFinder::class);
     $services->set(Parser::class);
 };
