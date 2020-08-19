@@ -2,20 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Tests\HttpKernel;
+namespace Migrify\PhpConfigPrinter\HttpKernel;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symplify\AutowireArrayParameter\DependencyInjection\CompilerPass\AutowireArrayParameterCompilerPass;
+use Symplify\PackageBuilder\Contract\HttpKernel\ExtraConfigAwareKernelInterface;
 
-final class PhpConfigPrinterKernel extends Kernel
+final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKernelInterface
 {
+    /**
+     * @var string[]
+     */
+    private $configs = [];
+
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__ . '/../../config/config.php');
-        $loader->load(__DIR__ . '/../config/config.tests.php');
+
+        foreach ($this->configs as $config) {
+            $loader->load($config);
+        }
     }
 
     public function getCacheDir(): string
@@ -34,6 +43,14 @@ final class PhpConfigPrinterKernel extends Kernel
     public function registerBundles(): iterable
     {
         return [];
+    }
+
+    /**
+     * @param string[] $configs
+     */
+    public function setConfigs(array $configs): void
+    {
+        $this->configs = $configs;
     }
 
     protected function build(ContainerBuilder $containerBuilder): void
