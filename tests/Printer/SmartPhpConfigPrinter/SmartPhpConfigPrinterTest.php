@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
 
+use Migrify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
 use Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
-use Migrify\PhpConfigPrinter\Tests\HttpKernel\PhpConfigPrinterKernel;
 use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
 
 final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
@@ -17,7 +17,8 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 
     protected function setUp(): void
     {
-        $this->bootKernel(PhpConfigPrinterKernel::class);
+        $this->bootKernelWithConfigs(PhpConfigPrinterKernel::class, [__DIR__ . '/../../config/config.tests.php']);
+
         $this->smartPhpConfigPrinter = self::$container->get(SmartPhpConfigPrinter::class);
     }
 
