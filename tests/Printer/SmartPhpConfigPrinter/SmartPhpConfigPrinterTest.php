@@ -6,6 +6,8 @@ namespace Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
 
 use Migrify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
 use Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
+use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\FirstClass;
+use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\SecondClass;
 use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
 
 final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
@@ -25,9 +27,10 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
     public function test(): void
     {
         $printedContent = $this->smartPhpConfigPrinter->printConfiguredServices([
-            'SomeClass' => [
+            FirstClass::class => [
                 'some_key' => 'some_value',
             ],
+            SecondClass::class => null,
         ]);
 
         $this->assertStringEqualsFile(__DIR__ . '/Fixture/expected_file.php', $printedContent);
