@@ -15,7 +15,6 @@ use PhpParser\Node\Scalar\LNumber;
 use PhpParser\Node\Stmt\Declare_;
 use PhpParser\Node\Stmt\DeclareDeclare;
 use PhpParser\Node\Stmt\Nop;
-use PhpParser\NodeFinder;
 use PhpParser\PrettyPrinter\Standard;
 
 final class PhpConfigurationPrinter extends Standard
