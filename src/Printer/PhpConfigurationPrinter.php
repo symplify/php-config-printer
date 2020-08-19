@@ -31,22 +31,15 @@ final class PhpConfigurationPrinter extends Standard
     private $importFullyQualifiedNamesNodeTraverser;
 
     /**
-     * @var NodeFinder
-     */
-    private $nodeFinder;
-
-    /**
      * @var EmptyLineNodeDecorator
      */
     private $emptyLineNodeDecorator;
 
     public function __construct(
         ImportFullyQualifiedNamesNodeTraverser $importFullyQualifiedNamesNodeTraverser,
-        EmptyLineNodeDecorator $emptyLineNodeDecorator,
-        NodeFinder $nodeFinder
+        EmptyLineNodeDecorator $emptyLineNodeDecorator
     ) {
         $this->importFullyQualifiedNamesNodeTraverser = $importFullyQualifiedNamesNodeTraverser;
-        $this->nodeFinder = $nodeFinder;
         $this->emptyLineNodeDecorator = $emptyLineNodeDecorator;
 
         parent::__construct();
