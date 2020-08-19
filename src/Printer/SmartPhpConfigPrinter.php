@@ -30,15 +30,19 @@ final class SmartPhpConfigPrinter
     }
 
     /**
-     * @param array<string, mixed[]> $configuredServices
+     * @param array<string, mixed[]|null> $configuredServices
      */
     public function printConfiguredServices(array $configuredServices): string
     {
         $servicesWithConfigureCalls = [];
         foreach ($configuredServices as $service => $configuration) {
-            $servicesWithConfigureCalls[$service] = [
-                'calls' => [['configure', [$configuration]]],
-            ];
+            if ($configuration === null || $configuration === []) {
+                $servicesWithConfigureCalls[$service] = null;
+            } else {
+                $servicesWithConfigureCalls[$service] = [
+                    'calls' => [['configure', [$configuration]]],
+                ];
+            }
         }
 
         $return = $this->configuratorReturnClosureFactory->createFromYamlArray(
