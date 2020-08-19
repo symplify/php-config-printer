@@ -6,12 +6,12 @@
         "php": "^7.2",
         "nette/utils": "^3.1",
         "nikic/php-parser": "^4.9",
+        "symfony/http-kernel": "^4.4|^5.0",
         "symplify/autowire-array-parameter": "^8.1.17",
         "symplify/package-builder": "^8.1.17",
         "symplify/smart-file-system": "^8.1.17"
     },
     "require-dev": {
-        "symfony/http-kernel": "^4.4|^5.0",
         "symplify/easy-testing": "^8.1.17",
         "phpunit/phpunit": "^8.5|^9.0"
     },
