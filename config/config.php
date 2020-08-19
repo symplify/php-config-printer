@@ -17,7 +17,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autowire()
         ->autoconfigure();
 
-    $services->load('Migrify\PhpConfigPrinter\\', __DIR__ . '/../src');
+    $services->load('Migrify\PhpConfigPrinter\\', __DIR__ . '/../src')
+        ->exclude([__DIR__ . '/../src/HttpKernel']);
 
     $services->set(NodeFinder::class);
     $services->set(Parser::class);
