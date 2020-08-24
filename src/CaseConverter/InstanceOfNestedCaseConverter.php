@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Contract\NestedCaseConverterInterface;
+use Migrify\PhpConfigPrinter\Contract\NestedCaseConverterInterface;
 use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Migrify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
 use Migrify\PhpConfigPrinter\ValueObject\MethodName;
