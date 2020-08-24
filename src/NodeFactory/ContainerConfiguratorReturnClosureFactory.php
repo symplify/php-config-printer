@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\NodeFactory;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Contract\NestedCaseConverterInterface;
 use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Migrify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 use Migrify\PhpConfigPrinter\ValueObject\MethodName;
@@ -30,13 +29,13 @@ final class ContainerConfiguratorReturnClosureFactory
     private $caseConverters = [];
 
     /**
-     * @var NestedCaseConverterInterface[]
+     * @var \Migrify\PhpConfigPrinter\Contract\NestedCaseConverterInterface[]
      */
     private $nestedCaseConverters = [];
 
     /**
      * @param CaseConverterInterface[] $caseConverters
-     * @param NestedCaseConverterInterface[] $nestedCaseConverters
+     * @param \Migrify\PhpConfigPrinter\Contract\NestedCaseConverterInterface[] $nestedCaseConverters
      */
     public function __construct(
         ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
