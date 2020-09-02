@@ -205,6 +205,10 @@ final class ArgsNodeFactory
         bool $skipServiceReference,
         bool $skipClassesToConstantReference
     ): Expr {
+        if ($value === '') {
+            return new String_($value);
+        }
+
         $constFetch = $this->constantNodeFactory->createConstantIfValue($value);
         if ($constFetch !== null) {
             return $constFetch;
