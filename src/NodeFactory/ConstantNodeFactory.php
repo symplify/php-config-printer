@@ -6,8 +6,11 @@ namespace Migrify\PhpConfigPrinter\NodeFactory;
 
 use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
 use Nette\Utils\Strings;
+use PhpParser\Node\Expr;
+use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Name;
+use PhpParser\Node\Name\FullyQualified;
 
 /**
  * Hacking constants @solve better in the future
@@ -26,8 +29,22 @@ final class ConstantNodeFactory
         $this->yamlFileContentProvider = $yamlFileContentProvider;
     }
 
-    public function createConstantIfValue(string $value): ?ConstFetch
+    /**
+     * @return ConstFetch|ClassConstFetch|null
+     */
+    public function createConstantIfValue(string $value): ?Expr
     {
+        if (Strings::contains($value, '::')) {
+            [$class, $constant] = explode('::', $value);
+
+            // not uppercase → probably not a constant
+            if (strtoupper($constant) !== $constant) {
+                return null;
+            }
+
+            return new ClassConstFetch(new FullyQualified($class), $constant);
+        }
+
         $definedConstants = get_defined_constants();
 
         foreach (array_keys($definedConstants) as $constantName) {

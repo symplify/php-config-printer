@@ -86,7 +86,11 @@ final class ParameterCaseConverter implements CaseConverterInterface
      */
     private function prefixWithDirConstantIfExistingPath(string $value)
     {
-        $configDirectory = dirname($this->currentFilePathProvider->getFilePath());
+        $filePath = $this->currentFilePathProvider->getFilePath();
+        if ($filePath === null) {
+            return $value;
+        }
+        $configDirectory = dirname($filePath);
 
         $possibleConfigPath = $configDirectory . '/' . $value;
         if (is_file($possibleConfigPath) || is_dir($possibleConfigPath)) {
