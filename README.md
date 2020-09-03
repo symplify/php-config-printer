@@ -13,10 +13,38 @@ composer require migrify/php-config-printer --dev
 ## Use
 
 ```php
+<?php
+
+use Migrify\PhpConfigPrinter\YamlToPhpConverter;
+
 class SomeClass
 {
-    public function __construct()
+    /**
+     * @var YamlToPhpConverter
+     */
+    private $yamlToPhpConverter;
+    
+    public function __construct(YamlToPhpConverter $yamlToPhpConverter)
     {
+        $this->yamlToPhpConverter = $yamlToPhpConverter;
+    }
+    
+    public function run()
+    {
+        $phpFileContent = $this->yamlToPhpConverter->convertYamlArray([
+            'parameters' => [
+                'key' => 'value',
+            ],
+            'services' => [
+                '_defaults' => [
+                    'autowire' => true,
+                    'autoconfigure' => true,
+                ]       
+            ]       
+        ]);
+
+        // dump the $phpFileContent file
+        // ... 
     }
 }
 ```

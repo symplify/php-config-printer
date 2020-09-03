@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\HttpKernel;
 
+use Migrify\PhpConfigPrinter\Bundle\PhpConfigPrinterBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
@@ -42,7 +43,7 @@ final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKer
      */
     public function registerBundles(): iterable
     {
-        return [];
+        return [new PhpConfigPrinterBundle()];
     }
 
     /**

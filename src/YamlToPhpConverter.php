@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Migrify\PhpConfigPrinter;
 
 use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
 use Migrify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
@@ -80,6 +80,11 @@ final class YamlToPhpConverter
             return '';
         }
 
+        return $this->convertYamlArray($yamlArray);
+    }
+
+    public function convertYamlArray(array $yamlArray): string
+    {
         if ($this->isRouteYaml($yamlArray)) {
             $return = $this->routingConfiguratorReturnClosureFactory->createFromArrayData($yamlArray);
         } else {
