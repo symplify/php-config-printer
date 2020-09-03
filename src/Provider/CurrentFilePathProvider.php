@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\Provider;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\ShouldNotHappenException;
-
 final class CurrentFilePathProvider
 {
     /**
@@ -18,12 +16,8 @@ final class CurrentFilePathProvider
         $this->filePath = $yamlFilePath;
     }
 
-    public function getFilePath(): string
+    public function getFilePath(): ?string
     {
-        if ($this->filePath === null) {
-            throw new ShouldNotHappenException();
-        }
-
         return $this->filePath;
     }
 }
