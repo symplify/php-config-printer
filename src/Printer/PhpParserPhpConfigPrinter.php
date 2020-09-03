@@ -9,7 +9,6 @@ use Migrify\PhpConfigPrinter\Printer\NodeDecorator\EmptyLineNodeDecorator;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\Closure;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Scalar\LNumber;
 use PhpParser\Node\Stmt\Declare_;
