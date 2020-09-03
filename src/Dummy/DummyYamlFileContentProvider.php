@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Tests\Provider;
+namespace Migrify\PhpConfigPrinter\Dummy;
 
 use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
 
