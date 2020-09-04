@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\NodeFactory;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Contract\RoutingCaseConverterInterface;
+use Migrify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Migrify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Return_;
@@ -26,7 +26,7 @@ final class RoutingConfiguratorReturnClosureFactory
      */
     public function __construct(
         ConfiguratorClosureNodeFactory $containerConfiguratorClosureNodeFactory,
-        array $routingCaseConverters = []
+        array $routingCaseConverters
     ) {
         $this->containerConfiguratorClosureNodeFactory = $containerConfiguratorClosureNodeFactory;
         $this->routingCaseConverters = $routingCaseConverters;
