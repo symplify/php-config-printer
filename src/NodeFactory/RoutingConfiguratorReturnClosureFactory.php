@@ -26,7 +26,7 @@ final class RoutingConfiguratorReturnClosureFactory
      */
     public function __construct(
         ConfiguratorClosureNodeFactory $containerConfiguratorClosureNodeFactory,
-        array $routingCaseConverters
+        array $routingCaseConverters = []
     ) {
         $this->containerConfiguratorClosureNodeFactory = $containerConfiguratorClosureNodeFactory;
         $this->routingCaseConverters = $routingCaseConverters;
