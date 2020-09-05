@@ -3,16 +3,16 @@
     "description": "Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper",
     "license": "MIT",
     "require": {
-        "php": "^7.2|^8.0",
+        "php": ">=7.2",
         "nette/utils": "^3.1",
         "nikic/php-parser": "^4.9",
         "symfony/http-kernel": "^4.4|^5.1",
-        "symplify/autowire-array-parameter": "^8.1.17",
-        "symplify/package-builder": "^8.1.17",
-        "symplify/smart-file-system": "^8.1.17"
+        "symplify/autowire-array-parameter": "^8.2",
+        "symplify/package-builder": "^8.2",
+        "symplify/smart-file-system": "^8.2"
     },
     "require-dev": {
-        "symplify/easy-testing": "^8.1.17",
+        "symplify/easy-testing": "^8.2",
         "phpunit/phpunit": "^8.5|^9.0"
     },
     "autoload": {
