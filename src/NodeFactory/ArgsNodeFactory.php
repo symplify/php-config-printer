@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\NodeFactory;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\NotImplementedYetException;
 use Migrify\ConfigTransformer\FormatSwitcher\ValueObject\FunctionName;
 use Migrify\ConfigTransformer\FormatSwitcher\ValueObject\SymfonyVersionFeature;
+use Migrify\MigrifyKernel\Exception\NotImplementedYetException;
 use Migrify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
 use Nette\Utils\Strings;
 use PhpParser\BuilderHelpers;
