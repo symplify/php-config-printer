@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\NotImplementedYetException;
+use Migrify\MigrifyKernel\Exception\NotImplementedYetException;
 use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Migrify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
