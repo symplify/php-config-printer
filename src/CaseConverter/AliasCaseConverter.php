@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\ShouldNotHappenException;
+use Migrify\MigrifyKernel\Exception\ShouldNotHappenException;
 use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
