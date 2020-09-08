@@ -22,5 +22,7 @@
         "psr-4": {
             "Migrify\\PhpConfigPrinter\\Tests\\": "tests"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
