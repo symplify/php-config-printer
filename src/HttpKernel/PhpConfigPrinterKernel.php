@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\HttpKernel;
 
+use Migrify\MigrifyKernel\HttpKernel\AbstractMigrifyKernel;
 use Migrify\PhpConfigPrinter\Bundle\PhpConfigPrinterBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
-use Symfony\Component\HttpKernel\Kernel;
 use Symplify\PackageBuilder\Contract\HttpKernel\ExtraConfigAwareKernelInterface;
 
-final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKernelInterface
+final class PhpConfigPrinterKernel extends AbstractMigrifyKernel implements ExtraConfigAwareKernelInterface
 {
     /**
      * @var string[]
@@ -24,16 +24,6 @@ final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKer
         foreach ($this->configs as $config) {
             $loader->load($config);
         }
-    }
-
-    public function getCacheDir(): string
-    {
-        return sys_get_temp_dir() . '/php_config_printer';
-    }
-
-    public function getLogDir(): string
-    {
-        return sys_get_temp_dir() . '/php_config_printer_log';
     }
 
     /**
