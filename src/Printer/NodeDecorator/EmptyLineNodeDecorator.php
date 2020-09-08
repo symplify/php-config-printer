@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\Printer\NodeDecorator;
 
-use Migrify\PhpConfigPrinter\Exception\ShouldNotHappenException;
+use Migrify\MigrifyKernel\Exception\ShouldNotHappenException;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Closure;

@@ -6,10 +6,8 @@ namespace Migrify\PhpConfigPrinter\HttpKernel;
 
 use Migrify\PhpConfigPrinter\Bundle\PhpConfigPrinterBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
-use Symplify\AutowireArrayParameter\DependencyInjection\CompilerPass\AutowireArrayParameterCompilerPass;
 use Symplify\PackageBuilder\Contract\HttpKernel\ExtraConfigAwareKernelInterface;
 
 final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKernelInterface
@@ -52,10 +50,5 @@ final class PhpConfigPrinterKernel extends Kernel implements ExtraConfigAwareKer
     public function setConfigs(array $configs): void
     {
         $this->configs = $configs;
-    }
-
-    protected function build(ContainerBuilder $containerBuilder): void
-    {
-        $containerBuilder->addCompilerPass(new AutowireArrayParameterCompilerPass());
     }
 }
