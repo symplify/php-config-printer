@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\ServiceOptionConverter;
 
-use Migrify\ConfigTransformer\FormatSwitcher\Exception\NotImplementedYetException;
+use Migrify\MigrifyKernel\Exception\NotImplementedYetException;
 use Migrify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
 use PhpParser\Node\Expr\MethodCall;
 
