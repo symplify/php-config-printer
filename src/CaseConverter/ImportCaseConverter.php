@@ -27,6 +27,7 @@ use PhpParser\Node\Stmt\Expression;
 final class ImportCaseConverter implements CaseConverterInterface
 {
     /**
+     * @see https://regex101.com/r/hOTdIE/1
      * @var string
      */
     private const INPUT_SUFFIX_REGEX = '#\.(yml|yaml|xml)$#';
