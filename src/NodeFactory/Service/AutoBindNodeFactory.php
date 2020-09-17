@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\NodeFactory\Service;
 
-use Migrify\ConfigTransformer\FormatSwitcher\ValueObject\SymfonyVersionFeature;
+use Migrify\ConfigTransformer\ValueObject\SymfonyVersionFeature;
 use Migrify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
 use Migrify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory\TagsServiceOptionKeyYamlToPhpFactory;
 use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
