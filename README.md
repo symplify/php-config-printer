@@ -32,6 +32,23 @@ final class AppKernel
 
 ## Use
 
+### 1. Only Configured Services
+
+```php 
+<?php
+
+/** @var \Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter $smartConfigPrinter */
+$config = [
+    'SomeService' => [
+        'key' => 'value'
+    ]
+];
+
+$smartConfigPrinter->printConfiguredServices($config);
+```
+
+### 2. Full Config
+
 ```php
 <?php
 
