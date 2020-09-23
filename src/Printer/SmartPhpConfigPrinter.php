@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Migrify\PhpConfigPrinter\Printer;
 
 use Migrify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
+use Migrify\PhpConfigPrinter\Printer\ArrayDecorator\ServiceConfigurationDecorator;
 
 /**
  * @see \Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\SmartPhpConfigPrinterTest
@@ -21,12 +22,19 @@ final class SmartPhpConfigPrinter
      */
     private $phpParserPhpConfigPrinter;
 
+    /**
+     * @var ServiceConfigurationDecorator
+     */
+    private $serviceConfigurationDecorator;
+
     public function __construct(
         ContainerConfiguratorReturnClosureFactory $configuratorReturnClosureFactory,
-        PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter
+        PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter,
+        ServiceConfigurationDecorator $serviceConfigurationDecorator
     ) {
         $this->configuratorReturnClosureFactory = $configuratorReturnClosureFactory;
         $this->phpParserPhpConfigPrinter = $phpParserPhpConfigPrinter;
+        $this->serviceConfigurationDecorator = $serviceConfigurationDecorator;
     }
 
     /**
@@ -36,7 +44,7 @@ final class SmartPhpConfigPrinter
     {
         $servicesWithConfigureCalls = [];
         foreach ($configuredServices as $service => $configuration) {
-            $servicesWithConfigureCalls[$service] = $this->createServiceConfiguration($configuration);
+            $servicesWithConfigureCalls[$service] = $this->createServiceConfiguration($configuration, $service);
         }
 
         $return = $this->configuratorReturnClosureFactory->createFromYamlArray(
@@ -49,11 +57,13 @@ final class SmartPhpConfigPrinter
     /**
      * @param mixed[]|null $configuration
      */
-    private function createServiceConfiguration($configuration): ?array
+    private function createServiceConfiguration($configuration, string $class): ?array
     {
         if ($configuration === null || $configuration === []) {
             return null;
         }
+
+        $configuration = $this->serviceConfigurationDecorator->decorate($configuration, $class);
 
         return [
             'calls' => [['configure', [$configuration]]],
