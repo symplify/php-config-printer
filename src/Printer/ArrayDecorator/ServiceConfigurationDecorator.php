@@ -8,6 +8,8 @@ use Migrify\PhpConfigPrinter\NodeFactory\NewValueObjectFactory;
 use Migrify\PhpConfigPrinter\Reflection\ConstantNameFromValueResolver;
 use Migrify\PhpConfigPrinter\ValueObject\Option;
 use PhpParser\Node\Arg;
+use PhpParser\Node\Expr\Array_;
+use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use Symplify\PackageBuilder\Parameter\ParameterProvider;
@@ -52,8 +54,8 @@ final class ServiceConfigurationDecorator
         $configuration = $this->decorateClassConstantKeys($configuration, $class);
 
         foreach ($configuration as $key => $value) {
-            if (is_array($value)) {
-                $configuration[$key] = $this->decorate($value, $class);
+            if ($this->isArrayOfObjects($value)) {
+                $configuration[$key] = $this->decorateValueObjects($value);
             } elseif (is_object($value)) {
                 $configuration[$key] = $this->decorateValueObject($value);
             }
@@ -91,5 +93,40 @@ final class ServiceConfigurationDecorator
         $functionName = $this->parameterProvider->provideStringParameter(Option::INLINE_VALUE_OBJECT_FUNC_CALL_NAME);
 
         return new FuncCall(new FullyQualified($functionName), $args);
+    }
+
+    private function decorateValueObjects(array $values): FuncCall
+    {
+        $arrayItems = [];
+        foreach ($values as $value) {
+            $new = $this->newValueObjectFactory->create($value);
+            $arrayItems[] = new ArrayItem($new);
+        }
+
+        $array = new Array_($arrayItems);
+        $args = [new Arg($array)];
+
+        $functionName = $this->parameterProvider->provideStringParameter(Option::INLINE_VALUE_OBJECTS_FUNC_CALL_NAME);
+
+        return new FuncCall(new FullyQualified($functionName), $args);
+    }
+
+    private function isArrayOfObjects($values): bool
+    {
+        if (! is_array($values)) {
+            return false;
+        }
+
+        if ($values === []) {
+            return false;
+        }
+
+        foreach ($values as $value) {
+            if (! is_object($value)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
