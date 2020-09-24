@@ -29,9 +29,15 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 
         /** @var ParameterProvider $parameterProvider */
         $parameterProvider = self::$container->get(ParameterProvider::class);
+
         $parameterProvider->changeParameter(
             Option::INLINE_VALUE_OBJECT_FUNC_CALL_NAME,
-            'Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_function'
+            'Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_object_function'
+        );
+
+        $parameterProvider->changeParameter(
+            Option::INLINE_VALUE_OBJECTS_FUNC_CALL_NAME,
+            'Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_objects_function'
         );
     }
 
@@ -62,8 +68,14 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 
         yield [[
             SecondClass::class => [
-                'some_key' => [new SimpleValueObject('Steve')],
+                'some_key' => new SimpleValueObject('Steve'),
             ],
         ], __DIR__ . '/Fixture/expected_value_object_file.php.inc'];
+
+        yield [[
+            SecondClass::class => [
+                'some_key' => [new SimpleValueObject('Paul')],
+            ],
+        ], __DIR__ . '/Fixture/expected_value_objects_file.php.inc'];
     }
 }
