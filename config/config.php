@@ -23,7 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure();
 
     $services->load('Migrify\PhpConfigPrinter\\', __DIR__ . '/../src')
-        ->exclude([__DIR__ . '/../src/HttpKernel', __DIR__ . '/../src/Dummy']);
+        ->exclude([__DIR__ . '/../src/HttpKernel', __DIR__ . '/../src/Dummy', __DIR__ . '/../src/Bundle']);
 
     $services->set(NodeFinder::class);
     $services->set(Parser::class);
