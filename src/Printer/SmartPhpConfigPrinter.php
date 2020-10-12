@@ -48,7 +48,9 @@ final class SmartPhpConfigPrinter
         }
 
         $return = $this->configuratorReturnClosureFactory->createFromYamlArray(
-            ['services' => $servicesWithConfigureCalls]
+            [
+                'services' => $servicesWithConfigureCalls,
+            ]
         );
 
         return $this->phpParserPhpConfigPrinter->prettyPrintFile([$return]);

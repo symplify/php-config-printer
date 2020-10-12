@@ -12,6 +12,7 @@ use Migrify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
 use Migrify\PhpConfigPrinter\ValueObject\MethodName;
 use Migrify\PhpConfigPrinter\ValueObject\VariableName;
 use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
+use Nette\Utils\Strings;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\BinaryOp\Concat;
 use PhpParser\Node\Expr\MethodCall;
@@ -27,6 +28,12 @@ use PhpParser\Node\Stmt\Expression;
  */
 final class AliasCaseConverter implements CaseConverterInterface
 {
+    /**
+     * @see https://regex101.com/r/BwXkfO/2/
+     * @var string
+     */
+    private const ARGUMENT_NAME_REGEX = '#\$(?<argument_name>\w+)#';
+
     /**
      * @var CommonNodeFactory
      */
@@ -73,7 +80,8 @@ final class AliasCaseConverter implements CaseConverterInterface
         }
 
         // handles: "SomeClass $someVariable: ..."
-        if ($fullClassName = strstr($key, ' $', true)) {
+        $fullClassName = Strings::before($key, ' $');
+        if ($fullClassName !== null) {
             $methodCall = $this->createAliasNode($key, $fullClassName, $values);
             return new Expression($methodCall);
         }
@@ -110,7 +118,7 @@ final class AliasCaseConverter implements CaseConverterInterface
             return true;
         }
 
-        if (strstr($key, ' $', true)) {
+        if (Strings::match($key, '#\w+\s+\$\w+#')) {
             return true;
         }
 
@@ -122,7 +130,10 @@ final class AliasCaseConverter implements CaseConverterInterface
         $args = [];
 
         $classConstFetch = $this->commonNodeFactory->createClassReference($fullClassName);
+
+        Strings::match($key, self::ARGUMENT_NAME_REGEX);
         $argumentName = strstr($key, '$');
+
         $concat = new Concat($classConstFetch, new String_(' ' . $argumentName));
         $args[] = new Arg($concat);
 
