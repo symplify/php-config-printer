@@ -46,7 +46,9 @@ final class ExtensionConverter implements CaseConverterInterface
     {
         $args = $this->argsNodeFactory->createFromValues([
             $this->rootKey,
-            [$key => $values],
+            [
+                $key => $values,
+            ],
         ]);
 
         $containerConfiguratorVariable = new Variable(VariableName::CONTAINER_CONFIGURATOR);
