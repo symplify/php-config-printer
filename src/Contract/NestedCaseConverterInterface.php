@@ -8,7 +8,7 @@ use PhpParser\Node\Stmt\Expression;
 
 interface NestedCaseConverterInterface
 {
-    public function match(string $rootKey, string $subKey): bool;
+    public function match(string $rootKey, $subKey): bool;
 
     public function convertToMethodCall($key, $values): Expression;
 }
