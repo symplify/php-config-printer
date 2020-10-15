@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject;
 
-final class SimpleValueObject
+final class Simple
 {
     /**
      * @var string

@@ -10,7 +10,7 @@ use Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
 use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithConstants;
 use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\FirstClass;
 use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\SecondClass;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject\SimpleValueObject;
+use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject\Simple;
 use Migrify\PhpConfigPrinter\ValueObject\Option;
 use Symplify\PackageBuilder\Parameter\ParameterProvider;
 use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
@@ -68,13 +68,13 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 
         yield [[
             SecondClass::class => [
-                'some_key' => new SimpleValueObject('Steve'),
+                'some_key' => new Simple('Steve'),
             ],
         ], __DIR__ . '/Fixture/expected_value_object_file.php.inc'];
 
         yield [[
             SecondClass::class => [
-                'some_key' => [new SimpleValueObject('Paul')],
+                'some_key' => [new Simple('Paul')],
             ],
         ], __DIR__ . '/Fixture/expected_value_objects_file.php.inc'];
     }
