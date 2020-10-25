@@ -18,13 +18,16 @@ final class CommonNodeFactory
 {
     public function createAbsoluteDirExpr($argument): Expr
     {
+        if ($argument === '') {
+            return new String_('');
+        }
+
         if (is_string($argument)) {
             // preslash with dir
             $argument = '/' . $argument;
         }
 
         $argumentValue = BuilderHelpers::normalizeValue($argument);
-
         if ($argumentValue instanceof String_) {
             $argumentValue = new Concat(new Dir(), $argumentValue);
         }
