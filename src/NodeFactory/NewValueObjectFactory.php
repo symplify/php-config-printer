@@ -6,6 +6,7 @@ namespace Migrify\PhpConfigPrinter\NodeFactory;
 
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Arg;
+use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name\FullyQualified;
 use ReflectionClass;
@@ -45,7 +46,13 @@ final class NewValueObjectFactory
     {
         $args = [];
         foreach ($propertyValues as $propertyValue) {
-            $args[] = new Arg(BuilderHelpers::normalizeValue($propertyValue));
+            if (is_object($propertyValue)) {
+                $args[] = new Arg($resolvedNestedObject = $this->create($propertyValue));
+            } elseif (is_array($propertyValue)) {
+                $args[] = new Arg(new Array_($this->createArgs($propertyValue)));
+            } else {
+                $args[] = new Arg(BuilderHelpers::normalizeValue($propertyValue));
+            }
         }
 
         return $args;
