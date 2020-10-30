@@ -7,7 +7,7 @@
         "nette/utils": "^3.1",
         "nikic/php-parser": "^4.9",
         "symfony/http-kernel": "^4.4|^5.1",
-        "migrify/migrify-kernel": "^0.3.52"
+        "migrify/migrify-kernel": "^0.4"
     },
     "require-dev": {
         "symplify/easy-testing": "^8.3.46",
