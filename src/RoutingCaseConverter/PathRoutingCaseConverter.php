@@ -17,12 +17,17 @@ final class PathRoutingCaseConverter implements RoutingCaseConverterInterface
     /**
      * @var string[]
      */
-    private const NESTED_KEYS = ['controller', 'defaults'];
+    private const NESTED_KEYS = ['controller', 'defaults', self::METHODS, 'requirements'];
 
     /**
      * @var string
      */
     private const PATH = 'path';
+
+    /**
+     * @var string
+     */
+    private const METHODS = 'methods';
 
     /**
      * @var ArgsNodeFactory
@@ -53,7 +58,14 @@ final class PathRoutingCaseConverter implements RoutingCaseConverterInterface
                 continue;
             }
 
-            $args = $this->argsNodeFactory->createFromValues([$values[$nestedKey]]);
+            $nestedValues = $values[$nestedKey];
+
+            // Transform methods as string GET|HEAD to array
+            if ($nestedKey === self::METHODS && is_string($nestedValues)) {
+                $nestedValues = explode('|', $nestedValues);
+            }
+
+            $args = $this->argsNodeFactory->createFromValues([$nestedValues]);
             $methodCall = new MethodCall($methodCall, $nestedKey, $args);
         }
 
