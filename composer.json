@@ -10,7 +10,7 @@
         "migrify/migrify-kernel": "^0.4"
     },
     "require-dev": {
-        "symplify/easy-testing": "^8.3.46",
+        "symplify/easy-testing": "^8.3.46|^9.0",
         "phpunit/phpunit": "^8.5|^9.0"
     },
     "autoload": {
