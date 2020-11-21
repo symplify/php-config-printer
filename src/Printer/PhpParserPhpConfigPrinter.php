@@ -19,11 +19,6 @@ use PhpParser\PrettyPrinter\Standard;
 final class PhpParserPhpConfigPrinter extends Standard
 {
     /**
-     * @var string
-     */
-    private const EOL_CHAR = "\n";
-
-    /**
      * @var ImportFullyQualifiedNamesNodeTraverser
      */
     private $importFullyQualifiedNamesNodeTraverser;
@@ -62,7 +57,7 @@ final class PhpParserPhpConfigPrinter extends Standard
         // remove space between declare strict types
         $printedContent = Strings::replace($printedContent, '#declare \(strict#', 'declare(strict');
 
-        return $printedContent . self::EOL_CHAR;
+        return $printedContent . PHP_EOL;
     }
 
     /**

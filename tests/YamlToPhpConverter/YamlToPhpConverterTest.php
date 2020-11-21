@@ -6,7 +6,7 @@ namespace Migrify\PhpConfigPrinter\Tests\YamlToPhpConverter;
 
 use Migrify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
 use Migrify\PhpConfigPrinter\YamlToPhpConverter;
-use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
+use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
 
 final class YamlToPhpConverterTest extends AbstractKernelTestCase
 {
