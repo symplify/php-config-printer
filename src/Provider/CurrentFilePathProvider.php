@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Provider;
+namespace Symplify\PhpConfigPrinter\Provider;
 
 final class CurrentFilePathProvider
 {

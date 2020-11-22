@@ -1,13 +1,13 @@
 # PHP Config Printer
 
-[![Downloads total](https://img.shields.io/packagist/dt/migrify/php-config-printer.svg?style=flat-square)](https://packagist.org/packages/migrify/php-config-printer/stats)
+[![Downloads total](https://img.shields.io/packagist/dt/symplify/php-config-printer.svg?style=flat-square)](https://packagist.org/packages/symplify/php-config-printer/stats)
 
 Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper
 
 ## Install
 
 ```bash
-composer require migrify/php-config-printer --dev
+composer require symplify/php-config-printer --dev
 ```
 
 Register bundle in your Kernel:
@@ -15,8 +15,8 @@ Register bundle in your Kernel:
 ```php
 namespace App;
 
-use Migrify\PhpConfigPrinter\Bundle\PhpConfigPrinterBundle;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+use Symplify\PhpConfigPrinter\Bundle\PhpConfigPrinterBundle;
 
 final class AppKernel
 {
@@ -34,14 +34,14 @@ final class AppKernel
 
 ### 1. Only Configured Services
 
-```php 
-<?php
+```php
+use Symplify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
 
-/** @var \Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter $smartConfigPrinter */
+/** @var SmartPhpConfigPrinter $smartConfigPrinter */
 $config = [
     'SomeService' => [
-        'key' => 'value'
-    ]
+        'key' => 'value',
+    ],
 ];
 
 $smartConfigPrinter->printConfiguredServices($config);
@@ -50,9 +50,7 @@ $smartConfigPrinter->printConfiguredServices($config);
 ### 2. Full Config
 
 ```php
-<?php
-
-use Migrify\PhpConfigPrinter\YamlToPhpConverter;
+use Symplify\PhpConfigPrinter\YamlToPhpConverter;
 
 class SomeClass
 {
@@ -60,13 +58,13 @@ class SomeClass
      * @var YamlToPhpConverter
      */
     private $yamlToPhpConverter;
-    
+
     public function __construct(YamlToPhpConverter $yamlToPhpConverter)
     {
         $this->yamlToPhpConverter = $yamlToPhpConverter;
     }
-    
-    public function run()
+
+    public function run(): void
     {
         $phpFileContent = $this->yamlToPhpConverter->convertYamlArray([
             'parameters' => [
@@ -76,12 +74,12 @@ class SomeClass
                 '_defaults' => [
                     'autowire' => true,
                     'autoconfigure' => true,
-                ]       
-            ]       
+                ],
+            ],
         ]);
 
         // dump the $phpFileContent file
-        // ... 
+        // ...
     }
 }
 ```

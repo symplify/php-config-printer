@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeFactory\Service;
+namespace Symplify\PhpConfigPrinter\NodeFactory\Service;
 
-use Migrify\ConfigTransformer\ValueObject\SymfonyVersionFeature;
-use Migrify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
-use Migrify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory\TagsServiceOptionKeyYamlToPhpFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
+use Symplify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
+use Symplify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory\TagsServiceOptionKeyYamlToPhpFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\SymfonyVersionFeature;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 final class AutoBindNodeFactory
 {

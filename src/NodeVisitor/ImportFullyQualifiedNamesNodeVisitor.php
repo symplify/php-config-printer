@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeVisitor;
+namespace Symplify\PhpConfigPrinter\NodeVisitor;
 
-use Migrify\PhpConfigPrinter\Naming\ClassNaming;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\NodeVisitorAbstract;
+use Symplify\PhpConfigPrinter\Naming\ClassNaming;
 
 final class ImportFullyQualifiedNamesNodeVisitor extends NodeVisitorAbstract
 {

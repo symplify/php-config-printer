@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\DependencyInjection\Extension;
+namespace Symplify\PhpConfigPrinter\DependencyInjection\Extension;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

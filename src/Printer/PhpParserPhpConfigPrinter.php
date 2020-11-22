@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Printer;
+namespace Symplify\PhpConfigPrinter\Printer;
 
-use Migrify\PhpConfigPrinter\NodeTraverser\ImportFullyQualifiedNamesNodeTraverser;
-use Migrify\PhpConfigPrinter\Printer\NodeDecorator\EmptyLineNodeDecorator;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
@@ -15,9 +13,40 @@ use PhpParser\Node\Stmt\Declare_;
 use PhpParser\Node\Stmt\DeclareDeclare;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\PrettyPrinter\Standard;
+use Symplify\PhpConfigPrinter\NodeTraverser\ImportFullyQualifiedNamesNodeTraverser;
+use Symplify\PhpConfigPrinter\Printer\NodeDecorator\EmptyLineNodeDecorator;
 
 final class PhpParserPhpConfigPrinter extends Standard
 {
+    /**
+     * @see https://regex101.com/r/qYtAPy/1
+     * @var string
+     */
+    private const QUOTE_SLASH_REGEX = "#'|\\\\(?=[\\\\']|$)#";
+
+    /**
+     * @see https://regex101.com/r/u0iUrM/1
+     * @var string
+     */
+    private const START_WITH_SPACE_REGEX = '#^[ ]+\n#m';
+
+    /**
+     * @see https://regex101.com/r/jJc7n3/1
+     * @var string
+     */
+    private const VOID_AFTER_FUNC_REGEX = '#\) : void#';
+
+    /**
+     * @var string
+     */
+    private const KIND = 'kind';
+
+    /**
+     * @see https://regex101.com/r/YYTPz6/1
+     * @var string
+     */
+    private const DECLARE_SPACE_STRICT_REGEX = '#declare \(strict#';
+
     /**
      * @var ImportFullyQualifiedNamesNodeTraverser
      */
@@ -49,13 +78,13 @@ final class PhpParserPhpConfigPrinter extends Standard
         $printedContent = parent::prettyPrintFile($stmts);
 
         // remove trailing spaces
-        $printedContent = Strings::replace($printedContent, '#^[ ]+\n#m', "\n");
+        $printedContent = Strings::replace($printedContent, self::START_WITH_SPACE_REGEX, "\n");
 
         // remove space before " :" in main closure
-        $printedContent = Strings::replace($printedContent, '#\) : void#', '): void');
+        $printedContent = Strings::replace($printedContent, self::VOID_AFTER_FUNC_REGEX, '): void');
 
         // remove space between declare strict types
-        $printedContent = Strings::replace($printedContent, '#declare \(strict#', 'declare(strict');
+        $printedContent = Strings::replace($printedContent, self::DECLARE_SPACE_STRICT_REGEX, 'declare(strict');
 
         return $printedContent . PHP_EOL;
     }
@@ -71,12 +100,12 @@ final class PhpParserPhpConfigPrinter extends Standard
      */
     protected function pSingleQuotedString(string $string): string
     {
-        return "'" . Strings::replace($string, "#'|\\\\(?=[\\\\']|$)#", '\\\\$0') . "'";
+        return "'" . Strings::replace($string, self::QUOTE_SLASH_REGEX, '\\\\$0') . "'";
     }
 
     protected function pExpr_Array(Array_ $array): string
     {
-        $array->setAttribute('kind', Array_::KIND_SHORT);
+        $array->setAttribute(self::KIND, Array_::KIND_SHORT);
 
         return parent::pExpr_Array($array);
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Tests\YamlToPhpConverter;
+namespace Symplify\PhpConfigPrinter\Tests\YamlToPhpConverter;
 
-use Migrify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
-use Migrify\PhpConfigPrinter\YamlToPhpConverter;
 use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
+use Symplify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
+use Symplify\PhpConfigPrinter\YamlToPhpConverter;
 
 final class YamlToPhpConverterTest extends AbstractKernelTestCase
 {

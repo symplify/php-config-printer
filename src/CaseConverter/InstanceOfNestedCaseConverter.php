@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Symplify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\PhpConfigPrinter\Contract\NestedCaseConverterInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\MethodName;
-use Migrify\PhpConfigPrinter\ValueObject\VariableName;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
+use Symplify\PhpConfigPrinter\Contract\NestedCaseConverterInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\MethodName;
+use Symplify\PhpConfigPrinter\ValueObject\VariableName;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 /**
  * Handles this part:
@@ -54,10 +54,7 @@ final class InstanceOfNestedCaseConverter implements NestedCaseConverterInterfac
             $instanceofMethodCall
         );
 
-        $expression = new Expression($instanceofMethodCall);
-        $expression->setAttribute('comments', $instanceofMethodCall->getComments());
-
-        return $expression;
+        return new Expression($instanceofMethodCall);
     }
 
     public function match(string $rootKey, $subKey): bool

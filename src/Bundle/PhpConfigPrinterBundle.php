@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Bundle;
+namespace Symplify\PhpConfigPrinter\Bundle;
 
-use Migrify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
-use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
-use Migrify\PhpConfigPrinter\DependencyInjection\Extension\PhpConfigPrinterExtension;
-use Migrify\PhpConfigPrinter\Dummy\DummySymfonyVersionFeatureGuard;
-use Migrify\PhpConfigPrinter\Dummy\DummyYamlFileContentProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symplify\AutowireArrayParameter\DependencyInjection\CompilerPass\AutowireArrayParameterCompilerPass;
+use Symplify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
+use Symplify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
+use Symplify\PhpConfigPrinter\DependencyInjection\Extension\PhpConfigPrinterExtension;
+use Symplify\PhpConfigPrinter\Dummy\DummySymfonyVersionFeatureGuard;
+use Symplify\PhpConfigPrinter\Dummy\DummyYamlFileContentProvider;
 
 /**
  * This class is dislocated in non-standard location, so it's not added by symfony/flex

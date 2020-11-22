@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Symplify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\MethodName;
-use Migrify\PhpConfigPrinter\ValueObject\VariableName;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use Nette\Utils\Strings;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
+use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\MethodName;
+use Symplify\PhpConfigPrinter\ValueObject\VariableName;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 /**
  * Handles this part:
@@ -52,10 +52,7 @@ final class ConfiguredServiceCaseConverter implements CaseConverterInterface
 
         $methodCall = $this->serviceOptionNodeFactory->convertServiceOptionsToNodes($values, $methodCall);
 
-        $expression = new Expression($methodCall);
-        $expression->setAttribute('comments', $methodCall->getComments());
-
-        return $expression;
+        return new Expression($methodCall);
     }
 
     public function match(string $rootKey, $key, $values): bool
@@ -76,7 +73,7 @@ final class ConfiguredServiceCaseConverter implements CaseConverterInterface
             return false;
         }
 
-        // handled by @see \Migrify\PhpConfigPrinter\CaseConverter\CaseConverter\AliasCaseConverter
+        // handled by @see \Symplify\PhpConfigPrinter\CaseConverter\CaseConverter\AliasCaseConverter
         if ($this->isAlias($values)) {
             return false;
         }

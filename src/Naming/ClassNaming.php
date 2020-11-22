@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Naming;
+namespace Symplify\PhpConfigPrinter\Naming;
 
 use Nette\Utils\Strings;
 

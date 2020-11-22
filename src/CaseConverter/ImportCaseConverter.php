@@ -2,14 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Symplify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\MigrifyKernel\Exception\NotImplementedYetException;
-use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
-use Migrify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
-use Migrify\PhpConfigPrinter\ValueObject\VariableName;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use Nette\Utils\Strings;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Arg;
@@ -18,6 +12,12 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Expression;
+use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\Exception\NotImplementedYetException;
+use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
+use Symplify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
+use Symplify\PhpConfigPrinter\ValueObject\VariableName;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 /**
  * Handles this part:

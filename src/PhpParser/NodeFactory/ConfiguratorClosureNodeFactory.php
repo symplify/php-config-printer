@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\PhpParser\NodeFactory;
+namespace Symplify\PhpConfigPrinter\PhpParser\NodeFactory;
 
-use Migrify\PhpConfigPrinter\ValueObject\VariableName;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Closure;
 use PhpParser\Node\Expr\Variable;
@@ -13,6 +12,7 @@ use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Param;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
 final class ConfiguratorClosureNodeFactory
 {

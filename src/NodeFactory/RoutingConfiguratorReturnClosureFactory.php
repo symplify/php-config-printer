@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeFactory;
+namespace Symplify\PhpConfigPrinter\NodeFactory;
 
-use Migrify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
-use Migrify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Return_;
+use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
+use Symplify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 
 final class RoutingConfiguratorReturnClosureFactory
 {

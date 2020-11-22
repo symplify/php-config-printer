@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
+namespace Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
 
 use Iterator;
-use Migrify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
-use Migrify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithConstants;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithType;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\FirstClass;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\SecondClass;
-use Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject\Simple;
-use Migrify\PhpConfigPrinter\ValueObject\Option;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\UnionType;
 use Symplify\PackageBuilder\Parameter\ParameterProvider;
 use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
+use Symplify\PhpConfigPrinter\HttpKernel\PhpConfigPrinterKernel;
+use Symplify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
+use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithConstants;
+use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithType;
+use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\FirstClass;
+use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\SecondClass;
+use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject\Simple;
+use Symplify\PhpConfigPrinter\ValueObject\Option;
 
 final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 {
@@ -40,7 +40,7 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
     public function test(array $services, string $expectedContentFilePath): void
     {
         $printedContent = $this->smartPhpConfigPrinter->printConfiguredServices($services);
-        $this->assertStringEqualsFile($expectedContentFilePath, $printedContent);
+        $this->assertStringEqualsFile($expectedContentFilePath, $printedContent, $expectedContentFilePath);
     }
 
     public function provideData(): Iterator
@@ -93,12 +93,12 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
 
         $parameterProvider->changeParameter(
             Option::INLINE_VALUE_OBJECT_FUNC_CALL_NAME,
-            'Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_object_function'
+            'Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_object_function'
         );
 
         $parameterProvider->changeParameter(
             Option::INLINE_VALUE_OBJECTS_FUNC_CALL_NAME,
-            'Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_objects_function'
+            'Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\custom_inline_objects_function'
         );
     }
 }

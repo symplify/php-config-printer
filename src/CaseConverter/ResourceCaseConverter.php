@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Symplify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\Service\ServicesPhpNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use PhpParser\Node\Stmt\Expression;
+use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\Service\ServicesPhpNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 /**
  * Handles this part:

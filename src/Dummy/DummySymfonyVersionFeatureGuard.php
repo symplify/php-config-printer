@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Dummy;
+namespace Symplify\PhpConfigPrinter\Dummy;
 
-use Migrify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
+use Symplify\PhpConfigPrinter\Contract\SymfonyVersionFeatureGuardInterface;
 
 final class DummySymfonyVersionFeatureGuard implements SymfonyVersionFeatureGuardInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject;
+namespace Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ValueObject;
 
 final class Simple
 {

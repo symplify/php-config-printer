@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\ValueObject;
+namespace Symplify\PhpConfigPrinter\ValueObject;
 
 final class YamlServiceKey
 {

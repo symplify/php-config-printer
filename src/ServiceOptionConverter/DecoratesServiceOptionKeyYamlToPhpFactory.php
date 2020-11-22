@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\ServiceOptionConverter;
+namespace Symplify\PhpConfigPrinter\ServiceOptionConverter;
 
-use Migrify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
-use Migrify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
-use Migrify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 use PhpParser\Node\Expr\MethodCall;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
+use Symplify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
+use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
 final class DecoratesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {

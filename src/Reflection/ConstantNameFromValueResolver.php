@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Reflection;
+namespace Symplify\PhpConfigPrinter\Reflection;
 
 use ReflectionClass;
 

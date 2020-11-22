@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter;
+namespace Symplify\PhpConfigPrinter;
 
-use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\RoutingConfiguratorReturnClosureFactory;
-use Migrify\PhpConfigPrinter\Printer\PhpParserPhpConfigPrinter;
-use Migrify\PhpConfigPrinter\Yaml\CheckerServiceParametersShifter;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
+use Symplify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\RoutingConfiguratorReturnClosureFactory;
+use Symplify\PhpConfigPrinter\Printer\PhpParserPhpConfigPrinter;
+use Symplify\PhpConfigPrinter\Yaml\CheckerServiceParametersShifter;
 
 /**
  * @source https://raw.githubusercontent.com/archeoprog/maker-bundle/make-convert-services/src/Util/PhpServicesCreator.php

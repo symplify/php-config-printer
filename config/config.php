@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Migrify\PhpConfigPrinter\ValueObject\Option;
 use PhpParser\BuilderFactory;
 use PhpParser\NodeFinder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Yaml\Parser;
 use Symplify\PackageBuilder\Parameter\ParameterProvider;
+use Symplify\PhpConfigPrinter\ValueObject\Option;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
@@ -22,7 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autowire()
         ->autoconfigure();
 
-    $services->load('Migrify\PhpConfigPrinter\\', __DIR__ . '/../src')
+    $services->load('Symplify\PhpConfigPrinter\\', __DIR__ . '/../src')
         ->exclude([__DIR__ . '/../src/HttpKernel', __DIR__ . '/../src/Dummy', __DIR__ . '/../src/Bundle']);
 
     $services->set(NodeFinder::class);

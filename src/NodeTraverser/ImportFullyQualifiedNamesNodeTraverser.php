@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeTraverser;
+namespace Symplify\PhpConfigPrinter\NodeTraverser;
 
-use Migrify\PhpConfigPrinter\NodeVisitor\ImportFullyQualifiedNamesNodeVisitor;
 use Nette\Utils\Strings;
 use PhpParser\BuilderFactory;
 use PhpParser\Node;
@@ -12,6 +11,7 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\NodeTraverser;
+use Symplify\PhpConfigPrinter\NodeVisitor\ImportFullyQualifiedNamesNodeVisitor;
 
 final class ImportFullyQualifiedNamesNodeTraverser
 {
@@ -92,10 +92,14 @@ final class ImportFullyQualifiedNamesNodeTraverser
 
             if (function_exists($nameImport) || $shortNameImport === 'ref') {
                 $useBuilder = $this->builderFactory->useFunction(new Name($nameImport));
-                $useImports[] = $useBuilder->getNode();
+                /** @var Use_ $use */
+                $use = $useBuilder->getNode();
+                $useImports[] = $use;
             } else {
                 $useBuilder = $this->builderFactory->use(new Name($nameImport));
-                $useImports[] = $useBuilder->getNode();
+                /** @var Use_ $use */
+                $use = $useBuilder->getNode();
+                $useImports[] = $use;
             }
         }
 

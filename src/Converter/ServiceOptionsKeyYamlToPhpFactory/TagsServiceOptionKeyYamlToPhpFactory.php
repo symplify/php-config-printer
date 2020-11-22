@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory;
+namespace Symplify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory;
 
-use Migrify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Scalar\String_;
+use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
 final class TagsServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Printer\ArrayDecorator;
+namespace Symplify\PhpConfigPrinter\Printer\ArrayDecorator;
 
-use Migrify\PhpConfigPrinter\NodeFactory\NewValueObjectFactory;
-use Migrify\PhpConfigPrinter\Reflection\ConstantNameFromValueResolver;
-use Migrify\PhpConfigPrinter\ValueObject\Option;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use Symplify\PackageBuilder\Parameter\ParameterProvider;
+use Symplify\PhpConfigPrinter\NodeFactory\NewValueObjectFactory;
+use Symplify\PhpConfigPrinter\Reflection\ConstantNameFromValueResolver;
+use Symplify\PhpConfigPrinter\ValueObject\Option;
 
 final class ServiceConfigurationDecorator
 {

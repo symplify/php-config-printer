@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Yaml;
+namespace Symplify\PhpConfigPrinter\Yaml;
 
 use Nette\Utils\Strings;
 use PhpCsFixer\Fixer\Comment\HeaderCommentFixer;

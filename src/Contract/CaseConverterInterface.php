@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Contract;
+namespace Symplify\PhpConfigPrinter\Contract;
 
 use PhpParser\Node\Stmt\Expression;
 

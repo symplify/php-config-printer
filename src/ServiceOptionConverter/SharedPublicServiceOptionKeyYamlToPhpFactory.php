@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\ServiceOptionConverter;
+namespace Symplify\PhpConfigPrinter\ServiceOptionConverter;
 
-use Migrify\MigrifyKernel\Exception\NotImplementedYetException;
-use Migrify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
 use PhpParser\Node\Expr\MethodCall;
+use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
+use Symplify\PhpConfigPrinter\Exception\NotImplementedYetException;
 
 final class SharedPublicServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {

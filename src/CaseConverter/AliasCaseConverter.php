@@ -2,16 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\CaseConverter;
+namespace Symplify\PhpConfigPrinter\CaseConverter;
 
-use Migrify\MigrifyKernel\Exception\ShouldNotHappenException;
-use Migrify\PhpConfigPrinter\Contract\CaseConverterInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
-use Migrify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\MethodName;
-use Migrify\PhpConfigPrinter\ValueObject\VariableName;
-use Migrify\PhpConfigPrinter\ValueObject\YamlKey;
 use Nette\Utils\Strings;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\BinaryOp\Concat;
@@ -19,6 +11,13 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Expression;
+use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\MethodName;
+use Symplify\PhpConfigPrinter\ValueObject\VariableName;
+use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
+use Symplify\SymplifyKernel\Exception\ShouldNotHappenException;
 
 /**
  * Handles this part:
@@ -35,6 +34,12 @@ final class AliasCaseConverter implements CaseConverterInterface
     private const ARGUMENT_NAME_REGEX = '#\$(?<argument_name>\w+)#';
 
     /**
+     * @see https://regex101.com/r/7y3Kq9/1
+     * @var string
+     */
+    private const TYPED_VARIABLE_REGEX = '#\w+\s+\$\w+#';
+
+    /**
      * @var CommonNodeFactory
      */
     private $commonNodeFactory;
@@ -44,19 +49,10 @@ final class AliasCaseConverter implements CaseConverterInterface
      */
     private $argsNodeFactory;
 
-    /**
-     * @var ServiceOptionNodeFactory
-     */
-    private $serviceOptionNodeFactory;
-
-    public function __construct(
-        CommonNodeFactory $commonNodeFactory,
-        ArgsNodeFactory $argsNodeFactory,
-        ServiceOptionNodeFactory $serviceOptionNodeFactory
-    ) {
+    public function __construct(CommonNodeFactory $commonNodeFactory, ArgsNodeFactory $argsNodeFactory)
+    {
         $this->commonNodeFactory = $commonNodeFactory;
         $this->argsNodeFactory = $argsNodeFactory;
-        $this->serviceOptionNodeFactory = $serviceOptionNodeFactory;
     }
 
     public function convertToMethodCall($key, $values): Expression
@@ -100,9 +96,8 @@ final class AliasCaseConverter implements CaseConverterInterface
         if (is_string($values) && $values[0] === '@') {
             $args = $this->argsNodeFactory->createFromValues([$values], true);
             $methodCall = new MethodCall($servicesVariable, MethodName::ALIAS, $args);
-        } elseif (is_array($values)) {
-            /** @var MethodCall $methodCall */
-            $methodCall = $this->serviceOptionNodeFactory->convertServiceOptionsToNodes($values, $methodCall);
+        } else {
+            throw new ShouldNotHappenException();
         }
 
         return new Expression($methodCall);
@@ -118,7 +113,7 @@ final class AliasCaseConverter implements CaseConverterInterface
             return true;
         }
 
-        if (Strings::match($key, '#\w+\s+\$\w+#')) {
+        if (Strings::match($key, self::TYPED_VARIABLE_REGEX)) {
             return true;
         }
 
@@ -132,7 +127,7 @@ final class AliasCaseConverter implements CaseConverterInterface
         $classConstFetch = $this->commonNodeFactory->createClassReference($fullClassName);
 
         Strings::match($key, self::ARGUMENT_NAME_REGEX);
-        $argumentName = strstr($key, '$');
+        $argumentName = Strings::contains($key, '$');
 
         $concat = new Concat($classConstFetch, new String_(' ' . $argumentName));
         $args[] = new Arg($concat);

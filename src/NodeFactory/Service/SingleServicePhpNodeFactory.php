@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeFactory\Service;
+namespace Symplify\PhpConfigPrinter\NodeFactory\Service;
 
-use Migrify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Yaml\Tag\TaggedValue;
+use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 
 final class SingleServicePhpNodeFactory
 {

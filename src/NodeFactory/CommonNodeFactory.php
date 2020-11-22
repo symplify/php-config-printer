@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeFactory;
+namespace Symplify\PhpConfigPrinter\NodeFactory;
 
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Expr;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\ServiceOptionConverter;
+namespace Symplify\PhpConfigPrinter\ServiceOptionConverter;
 
-use Migrify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
-use Migrify\PhpConfigPrinter\NodeFactory\Service\SingleServicePhpNodeFactory;
-use Migrify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 use PhpParser\Node\Expr\MethodCall;
+use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
+use Symplify\PhpConfigPrinter\NodeFactory\Service\SingleServicePhpNodeFactory;
+use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
 final class PropertiesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\NodeFactory;
+namespace Symplify\PhpConfigPrinter\NodeFactory;
 
-use Migrify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
 use Nette\Utils\Strings;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
+use Symplify\PhpConfigPrinter\Contract\YamlFileContentProviderInterface;
 
 /**
  * Hacking constants @solve better in the future

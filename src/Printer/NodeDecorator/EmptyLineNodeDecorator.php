@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\PhpConfigPrinter\Printer\NodeDecorator;
+namespace Symplify\PhpConfigPrinter\Printer\NodeDecorator;
 
-use Migrify\MigrifyKernel\Exception\ShouldNotHappenException;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Closure;
@@ -13,6 +12,7 @@ use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeFinder;
+use Symplify\SymplifyKernel\Exception\ShouldNotHappenException;
 
 final class EmptyLineNodeDecorator
 {
