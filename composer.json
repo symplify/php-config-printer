@@ -8,11 +8,11 @@
         "nikic/php-parser": "^4.11",
         "symfony/http-kernel": "^5.3|^6.0",
         "symfony/yaml": "^5.3|^6.0",
-        "symplify/astral": "^9.4.53",
-        "symplify/symplify-kernel": "^9.4.53"
+        "symplify/astral": "^9.5",
+        "symplify/symplify-kernel": "^9.5"
     },
     "require-dev": {
-        "symplify/easy-testing": "^9.4.53",
+        "symplify/easy-testing": "^9.5",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
@@ -54,7 +54,6 @@
         "symplify/vendor-patches": "<9.4.53",
         "symplify/skipper": "<9.4.53",
         "symplify/smart-file-system": "<9.4.53",
-        "symplify/phpunit-upgrader": "<9.4.53",
         "symplify/easy-hydrator": "<9.4.53",
         "symplify/symfony-static-dumper": "<9.4.53",
         "symplify/git-wrapper": "<9.4.53",
