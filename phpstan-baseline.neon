@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$items of class PhpParser\\\\Node\\\\Expr\\\\Array_ constructor expects array\\<PhpParser\\\\Node\\\\Expr\\\\ArrayItem\\|null\\>, array\\<PhpParser\\\\Node\\\\Arg\\> given\\.$#"
+			count: 1
+			path: src/NodeFactory/NewValueObjectFactory.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/NodeFactory/NewValueObjectFactory.php
+
+		-
+			message: "#^Method Symplify\\\\PhpConfigPrinter\\\\NodeFinder\\\\TypeAwareNodeFinder\\:\\:findFirstInstanceOf\\(\\) should return \\(TNode of PhpParser\\\\Node\\)\\|null but returns PhpParser\\\\Node\\|null\\.$#"
+			count: 1
+			path: src/NodeFinder/TypeAwareNodeFinder.php
+
+		-
+			message: "#^Method Symplify\\\\PhpConfigPrinter\\\\NodeFinder\\\\TypeAwareNodeFinder\\:\\:findInstanceOf\\(\\) should return array\\<TNode of PhpParser\\\\Node\\> but returns array\\<PhpParser\\\\Node\\>\\.$#"
+			count: 1
+			path: src/NodeFinder/TypeAwareNodeFinder.php
+
+		-
+			message: "#^Parameter \\#1 \\$nodes of method PhpParser\\\\PrettyPrinterAbstract\\:\\:pCommaSeparatedMultiline\\(\\) expects array\\<PhpParser\\\\Node\\>, array\\<PhpParser\\\\Node\\\\Expr\\\\ArrayItem\\|null\\> given\\.$#"
+			count: 1
+			path: src/Printer/PhpParserPhpConfigPrinter.php
+
+		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string given\\.$#"
+			count: 1
+			path: src/Reflection/ConstantNameFromValueResolver.php

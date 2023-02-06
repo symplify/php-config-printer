@@ -54,9 +54,9 @@ final class PhpParserPhpConfigPrinter extends Standard
      * @param PrePrintNodeVisitorInterface[] $prePrintNodeVisitors
      */
     public function __construct(
-        private ImportFullyQualifiedNamesNodeTraverser $importFullyQualifiedNamesNodeTraverser,
-        private EmptyLineNodeDecorator $emptyLineNodeDecorator,
-        private array $prePrintNodeVisitors
+        private readonly ImportFullyQualifiedNamesNodeTraverser $importFullyQualifiedNamesNodeTraverser,
+        private readonly EmptyLineNodeDecorator $emptyLineNodeDecorator,
+        private readonly array $prePrintNodeVisitors
     ) {
         parent::__construct();
     }
@@ -96,6 +96,22 @@ final class PhpParserPhpConfigPrinter extends Standard
     }
 
     /**
+     * Inspired by https://github.com/rectorphp/rector-src/pull/3271/files
+     *
+     * Always print array items with newlines to make look nice out of the oven.
+     */
+    protected function pExpr_Array(Array_ $array): string
+    {
+        // short always :)
+        $array->setAttribute(self::KIND, Array_::KIND_SHORT);
+
+        $printedArray = '[';
+        $printedArray .= $this->pCommaSeparatedMultiline($array->items, true);
+
+        return $printedArray . ($this->nl . ']');
+    }
+
+    /**
      * Do not preslash all slashes (parent behavior), but only those:
      * - followed by "\"
      * - by "'" - or the end of the string
@@ -105,13 +121,6 @@ final class PhpParserPhpConfigPrinter extends Standard
     protected function pSingleQuotedString(string $string): string
     {
         return "'" . Strings::replace($string, self::QUOTE_SLASH_REGEX, '\\\\$0') . "'";
-    }
-
-    protected function pExpr_Array(Array_ $array): string
-    {
-        $array->setAttribute(self::KIND, Array_::KIND_SHORT);
-
-        return parent::pExpr_Array($array);
     }
 
     protected function pExpr_MethodCall(MethodCall $methodCall): string
