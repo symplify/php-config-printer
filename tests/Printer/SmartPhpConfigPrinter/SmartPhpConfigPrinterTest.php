@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
 
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
 use Symplify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
 use Symplify\PhpConfigPrinter\Tests\HttpKernel\PhpConfigPrinterKernel;
@@ -23,16 +24,16 @@ final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
     }
 
     /**
-     * @dataProvider provideData()
      * @param array<string, mixed[]> $services
      */
+    #[DataProvider('provideData')]
     public function test(array $services, string $expectedContentFilePath): void
     {
         $printedContent = $this->smartPhpConfigPrinter->printConfiguredServices($services);
         $this->assertStringEqualsFile($expectedContentFilePath, $printedContent, $expectedContentFilePath);
     }
 
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
         yield [[
             FirstClass::class => [
