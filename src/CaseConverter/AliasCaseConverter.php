@@ -114,10 +114,10 @@ final class AliasCaseConverter implements CaseConverterInterface
 
     private function createFromClassLike(string $key, mixed $values, Variable $servicesVariable): Expression
     {
-        $classReference = $this->commonNodeFactory->createClassReference($key);
+        $classConstFetch = $this->commonNodeFactory->createClassReference($key);
 
         $argValues = [];
-        $argValues[] = $classReference;
+        $argValues[] = $classConstFetch;
         $argValues[] = $values[MethodName::ALIAS] ?? $values;
 
         $args = $this->argsNodeFactory->createFromValues($argValues, true);
