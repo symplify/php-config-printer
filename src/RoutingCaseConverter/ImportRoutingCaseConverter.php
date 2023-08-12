@@ -9,11 +9,11 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Expression;
-use Symplify\PackageBuilder\Strings\StringFormatConverter;
 use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\Enum\RouteOption;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\Routing\ControllerSplitter;
+use Symplify\PhpConfigPrinter\StringFormatConverter;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
 final class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
@@ -76,13 +76,10 @@ final class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
      */
     private const METHODS = 'methods';
 
-    private readonly StringFormatConverter $stringFormatConverter;
-
     public function __construct(
         private readonly ArgsNodeFactory $argsNodeFactory,
         private readonly ControllerSplitter $controllerSplitter
     ) {
-        $this->stringFormatConverter = new StringFormatConverter();
     }
 
     /**
@@ -123,7 +120,7 @@ final class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
             }
 
             $args = $this->argsNodeFactory->createFromValues([$nestedValues]);
-            $name = $this->stringFormatConverter->underscoreAndHyphenToCamelCase($nestedKey);
+            $name = StringFormatConverter::underscoreAndHyphenToCamelCase($nestedKey);
 
             $methodCall = new MethodCall($methodCall, $name, $args);
         }
