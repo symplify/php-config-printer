@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Symplify\PhpConfigPrinter\Yaml;
 
 use Nette\Utils\Strings;
-use Symplify\PackageBuilder\Strings\StringFormatConverter;
+use Symplify\PhpConfigPrinter\StringFormatConverter;
 
 /**
  * @api
@@ -70,13 +70,6 @@ final class CheckerServiceParametersShifter
         'bind',
         'autowiring_types',
     ];
-
-    private readonly StringFormatConverter $stringFormatConverter;
-
-    public function __construct()
-    {
-        $this->stringFormatConverter = new StringFormatConverter();
-    }
 
     /**
      * @param mixed[] $configuration
@@ -152,7 +145,7 @@ final class CheckerServiceParametersShifter
                 continue;
             }
 
-            $serviceDefinition = $this->stringFormatConverter->camelCaseToUnderscoreInArrayKeys($serviceDefinition);
+            $serviceDefinition = StringFormatConverter::camelCaseToUnderscoreInArrayKeys($serviceDefinition);
 
             $services[$checker]['calls'] = [['configure', [$serviceDefinition]]];
         }
@@ -173,7 +166,7 @@ final class CheckerServiceParametersShifter
                 continue;
             }
 
-            $key = $this->stringFormatConverter->underscoreAndHyphenToCamelCase($key);
+            $key = StringFormatConverter::underscoreAndHyphenToCamelCase($key);
 
             $services[$checker]['properties'][$key] = $this->escapeValue($value);
         }

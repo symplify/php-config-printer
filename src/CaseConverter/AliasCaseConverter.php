@@ -12,7 +12,6 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Expression;
-use Symplify\PackageBuilder\Reflection\ClassLikeExistenceChecker;
 use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Symplify\PhpConfigPrinter\Exception\ShouldNotHappenException;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
@@ -40,7 +39,6 @@ final class AliasCaseConverter implements CaseConverterInterface
         private readonly CommonNodeFactory $commonNodeFactory,
         private readonly ArgsNodeFactory $argsNodeFactory,
         private readonly ServiceOptionNodeFactory $serviceOptionNodeFactory,
-        private readonly ClassLikeExistenceChecker $classLikeExistenceChecker
     ) {
     }
 
@@ -51,7 +49,7 @@ final class AliasCaseConverter implements CaseConverterInterface
         }
 
         $servicesVariable = new Variable(VariableName::SERVICES);
-        if ($this->classLikeExistenceChecker->doesClassLikeExist($key)) {
+        if ($this->doesClassLikeExist($key)) {
             return $this->createFromClassLike($key, $values, $servicesVariable);
         }
 
@@ -116,10 +114,10 @@ final class AliasCaseConverter implements CaseConverterInterface
 
     private function createFromClassLike(string $key, mixed $values, Variable $servicesVariable): Expression
     {
-        $classReference = $this->commonNodeFactory->createClassReference($key);
+        $classConstFetch = $this->commonNodeFactory->createClassReference($key);
 
         $argValues = [];
-        $argValues[] = $classReference;
+        $argValues[] = $classConstFetch;
         $argValues[] = $values[MethodName::ALIAS] ?? $values;
 
         $args = $this->argsNodeFactory->createFromValues($argValues, true);
@@ -130,7 +128,7 @@ final class AliasCaseConverter implements CaseConverterInterface
 
     private function createFromAlias(string $serviceName, string $key, Variable $servicesVariable): MethodCall
     {
-        if ($this->classLikeExistenceChecker->doesClassLikeExist($serviceName)) {
+        if ($this->doesClassLikeExist($serviceName)) {
             $classReference = $this->commonNodeFactory->createClassReference($serviceName);
             $args = $this->argsNodeFactory->createFromValues([$key, $classReference]);
         } else {
@@ -155,5 +153,18 @@ final class AliasCaseConverter implements CaseConverterInterface
         /** @var MethodCall $methodCall */
         $methodCall = $this->serviceOptionNodeFactory->convertServiceOptionsToNodes($values, $methodCall);
         return new Expression($methodCall);
+    }
+
+    private function doesClassLikeExist(string $class): bool
+    {
+        if (class_exists($class)) {
+            return true;
+        }
+
+        if (interface_exists($class)) {
+            return true;
+        }
+
+        return trait_exists($class);
     }
 }

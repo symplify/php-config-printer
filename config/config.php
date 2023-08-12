@@ -7,10 +7,6 @@ use PhpParser\NodeFinder;
 use PhpParser\NodeVisitor\ParentConnectingVisitor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Yaml\Parser;
-use Symplify\PackageBuilder\Parameter\ParameterProvider;
-use Symplify\PackageBuilder\Php\TypeChecker;
-use Symplify\PackageBuilder\Reflection\ClassLikeExistenceChecker;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -26,11 +22,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(Parser::class);
     $services->set(BuilderFactory::class);
     $services->set(ParentConnectingVisitor::class);
-
-    $services->set(TypeChecker::class);
-
-    $services->set(ParameterProvider::class)
-        ->args([service('service_container')]);
-
-    $services->set(ClassLikeExistenceChecker::class);
 };

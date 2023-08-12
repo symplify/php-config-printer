@@ -13,9 +13,4 @@ parameters:
         - '*/tests/**/Fixture/*'
         - '*/tests/**/data/*'
 
-    unused_public:
-        methods: true
-        properties: true
-        constants: true
-
     ignoreErrors:

@@ -134,7 +134,7 @@ final class ContainerConfiguratorReturnClosureFactory
             $args = $expr->getArgs();
 
             if (! isset($args[1]) || ! $args[1]->value instanceof Array_ || ! isset($args[1]->value->items[0])
-                || ! $args[1]->value->items[0] instanceof ArrayItem || $args[1]->value->items[0]->key === null) {
+                || ! $args[1]->value->items[0] instanceof ArrayItem || ! $args[1]->value->items[0]->key instanceof Expr) {
                 throw new ShouldNotHappenException();
             }
 

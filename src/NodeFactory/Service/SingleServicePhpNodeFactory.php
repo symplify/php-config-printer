@@ -87,7 +87,7 @@ final class SingleServicePhpNodeFactory
         $args[] = new Arg($argumentsExpr);
 
         $returnCloneExpr = $this->resolveCallReturnClone($call);
-        if ($returnCloneExpr !== null) {
+        if ($returnCloneExpr instanceof Expr) {
             $args[] = new Arg($returnCloneExpr);
         }
 
