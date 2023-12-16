@@ -7,7 +7,7 @@ namespace Symplify\PhpConfigPrinter\ServiceOptionConverter;
 use PhpParser\Node\Expr\MethodCall;
 use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Symplify\PhpConfigPrinter\ServiceOptionConverter\NodeModifier\SingleFactoryReferenceNodeModifier;
+use Symplify\PhpConfigPrinter\NodeModifier\SingleFactoryReferenceNodeModifier;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 final class FactoryConfiguratorServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface

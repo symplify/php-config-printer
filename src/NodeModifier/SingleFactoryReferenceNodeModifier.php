@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PhpConfigPrinter\ServiceOptionConverter\NodeModifier;
+namespace Symplify\PhpConfigPrinter\NodeModifier;
 
 use Nette\Utils\Strings;
 use PhpParser\Node\Arg;
