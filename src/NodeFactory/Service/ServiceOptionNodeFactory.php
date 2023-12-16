@@ -16,7 +16,7 @@ final class ServiceOptionNodeFactory
      */
     public function __construct(
         private readonly ServiceOptionAnalyzer $serviceOptionAnalyzer,
-        private readonly array $serviceOptionKeyYamlToPhpFactories
+        private readonly iterable $serviceOptionKeyYamlToPhpFactories
     ) {
     }
 
