@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Symplify\PhpConfigPrinter\NodeFactory\Service;
 
 use PhpParser\Node\Expr\MethodCall;
-use Symplify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory\TagsServiceOptionKeyYamlToPhpFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
+use Symplify\PhpConfigPrinter\ServiceOptionConverter\TagsServiceOptionKeyYamlToPhpFactory;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
 final class AutoBindNodeFactory

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PhpConfigPrinter\Converter\ServiceOptionsKeyYamlToPhpFactory;
+namespace Symplify\PhpConfigPrinter\ServiceOptionConverter;
 
 use Nette\Utils\Arrays;
 use PhpParser\BuilderHelpers;
