@@ -56,7 +56,7 @@ final class PhpParserPhpConfigPrinter extends Standard
     public function __construct(
         private readonly ImportFullyQualifiedNamesNodeTraverser $importFullyQualifiedNamesNodeTraverser,
         private readonly EmptyLineNodeDecorator $emptyLineNodeDecorator,
-        private readonly array $prePrintNodeVisitors
+        private readonly iterable $prePrintNodeVisitors
     ) {
         parent::__construct();
     }

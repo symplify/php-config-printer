@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\Yaml\Parser;
 use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
+use Symplify\PhpConfigPrinter\Contract\NodeVisitor\PrePrintNodeVisitorInterface;
 use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\RoutingConfiguratorReturnClosureFactory;
@@ -29,6 +30,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/../src/CaseConverter'
     )->tag(CaseConverterInterface::class);
 
+    // \Symplify\PhpConfigPrinter\Contract\NodeVisitor\PrePrintNodeVisitorInterface
+
     $services->load(
         'Symplify\\PhpConfigPrinter\\RoutingCaseConverter\\',
         __DIR__ . '/../src/RoutingCaseConverter'
@@ -48,6 +51,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(\Symplify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory::class)
         ->arg('$serviceOptionKeyYamlToPhpFactories', tagged_iterator(ServiceOptionsKeyYamlToPhpFactoryInterface::class));
+
+    $services->set(\Symplify\PhpConfigPrinter\Printer\PhpParserPhpConfigPrinter::class)
+        ->arg('$prePrintNodeVisitors', tagged_iterator(PrePrintNodeVisitorInterface::class));
 
     $services->set(NodeFinder::class);
     $services->set(Parser::class);
