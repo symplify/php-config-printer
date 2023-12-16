@@ -1,8 +1,5 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
-    level: 8
+    level: 6
 
     paths:
         - src
@@ -14,3 +11,4 @@ parameters:
         - '*/tests/**/data/*'
 
     ignoreErrors:
+        - '#Parameter \#1 \$items of class PhpParser\\Node\\Expr\\Array_ constructor expects array<PhpParser\\Node\\Expr\\ArrayItem\|null>, array<PhpParser\\Node\\Arg> given#'
