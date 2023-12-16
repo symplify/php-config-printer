@@ -8,7 +8,9 @@ use PhpParser\NodeVisitor\ParentConnectingVisitor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Yaml\Parser;
 use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
+use Symplify\PhpConfigPrinter\NodeFactory\RoutingConfiguratorReturnClosureFactory;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -26,8 +28,16 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/../src/CaseConverter'
     )->tag(CaseConverterInterface::class);
 
+    $services->load(
+        'Symplify\\PhpConfigPrinter\\RoutingCaseConverter\\',
+        __DIR__ . '/../src/RoutingCaseConverter'
+    )->tag(RoutingCaseConverterInterface::class);
+
     $services->set(ContainerConfiguratorReturnClosureFactory::class)
         ->arg('$caseConverters', tagged_iterator(CaseConverterInterface::class));
+
+    $services->set(RoutingConfiguratorReturnClosureFactory::class)
+        ->arg('$routingCaseConverters', tagged_iterator(RoutingCaseConverterInterface::class));
 
     $services->set(NodeFinder::class);
     $services->set(Parser::class);

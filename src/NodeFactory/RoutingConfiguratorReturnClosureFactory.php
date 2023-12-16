@@ -9,9 +9,6 @@ use PhpParser\Node\Stmt\Return_;
 use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 
-/**
- * @api
- */
 final class RoutingConfiguratorReturnClosureFactory
 {
     /**
@@ -19,7 +16,7 @@ final class RoutingConfiguratorReturnClosureFactory
      */
     public function __construct(
         private readonly ConfiguratorClosureNodeFactory $containerConfiguratorClosureNodeFactory,
-        private readonly array $routingCaseConverters
+        private readonly iterable $routingCaseConverters
     ) {
     }
 
