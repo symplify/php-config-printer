@@ -8,6 +8,7 @@ use PhpParser\Node\Expr\MethodCall;
 use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
 use Symplify\PhpConfigPrinter\ServiceOptionAnalyzer\ServiceOptionAnalyzer;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
+use Webmozart\Assert\Assert;
 
 final class ServiceOptionNodeFactory
 {
@@ -18,6 +19,8 @@ final class ServiceOptionNodeFactory
         private readonly ServiceOptionAnalyzer $serviceOptionAnalyzer,
         private readonly iterable $serviceOptionKeyYamlToPhpFactories
     ) {
+        Assert::notEmpty($serviceOptionKeyYamlToPhpFactories);
+        Assert::allIsInstanceOf($serviceOptionKeyYamlToPhpFactories, ServiceOptionsKeyYamlToPhpFactoryInterface::class);
     }
 
     /**
