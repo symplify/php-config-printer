@@ -69,8 +69,12 @@ final class ServiceOptionNodeFactory
         ];
     }
 
-    private function shouldSkip(string $key): bool
+    private function shouldSkip(string|int $key): bool
     {
+        if (\is_int($key)) {
+            return false;
+        }
+
         // options started by decoration_<option> are used as options of the method decorate().
         if (\str_starts_with($key, 'decoration_')) {
             return true;
