@@ -28,9 +28,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->load(
         'Symplify\\PhpConfigPrinter\\CaseConverter\\',
         __DIR__ . '/../src/CaseConverter'
-    )->tag(CaseConverterInterface::class);
-
-    // \Symplify\PhpConfigPrinter\Contract\NodeVisitor\PrePrintNodeVisitorInterface
+    )
+        ->exclude(__DIR__ . '/../src/CaseConverter/NestedCaseConverter/InstanceOfNestedCaseConverter.php')
+        ->tag(CaseConverterInterface::class);
 
     $services->load(
         'Symplify\\PhpConfigPrinter\\RoutingCaseConverter\\',
