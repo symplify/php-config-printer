@@ -8,6 +8,7 @@ use PhpParser\NodeVisitor\ParentConnectingVisitor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Yaml\Parser;
 use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
+use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFactoryInterface;
 use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\NodeFactory\ContainerConfiguratorReturnClosureFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\RoutingConfiguratorReturnClosureFactory;
@@ -33,11 +34,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/../src/RoutingCaseConverter'
     )->tag(RoutingCaseConverterInterface::class);
 
+
+    $services->load(
+        'Symplify\\PhpConfigPrinter\\ServiceOptionConverter\\',
+        __DIR__ . '/../src/ServiceOptionConverter'
+    )->tag(ServiceOptionsKeyYamlToPhpFactoryInterface::class);
+
     $services->set(ContainerConfiguratorReturnClosureFactory::class)
         ->arg('$caseConverters', tagged_iterator(CaseConverterInterface::class));
 
     $services->set(RoutingConfiguratorReturnClosureFactory::class)
         ->arg('$routingCaseConverters', tagged_iterator(RoutingCaseConverterInterface::class));
+
+    $services->set(\Symplify\PhpConfigPrinter\NodeFactory\Service\ServiceOptionNodeFactory::class)
+        ->arg('$serviceOptionKeyYamlToPhpFactories', tagged_iterator(ServiceOptionsKeyYamlToPhpFactoryInterface::class));
 
     $services->set(NodeFinder::class);
     $services->set(Parser::class);

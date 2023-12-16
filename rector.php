@@ -37,5 +37,8 @@ return static function (RectorConfig $rectorConfig): void {
             // keep the container class string, to avoid prefixing
             __DIR__ . '/src/NodeFactory/ContainerConfiguratorReturnClosureFactory.php',
         ],
+
+        // preference
+        \Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector::class,
     ]);
 };
