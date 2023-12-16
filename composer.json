@@ -5,8 +5,8 @@
     "require": {
         "php": ">=8.1",
         "nette/utils": "^3.2",
-        "nikic/php-parser": "^4.16",
-        "symfony/yaml": "^6.2"
+        "nikic/php-parser": "^4.18",
+        "symfony/yaml": "^6.4"
     },
     "require-dev": {
         "myclabs/php-enum": "^1.8",
@@ -18,10 +18,7 @@
         "symplify/easy-coding-standard": "^12.0",
         "symplify/easy-testing": "^11.1",
         "symplify/phpstan-extensions": "^11.2",
-        "symplify/phpstan-rules": "^12.0",
-        "symplify/symplify-kernel": "^11.0",
-        "tomasvotruba/class-leak": "0.1.1.72",
-        "tomasvotruba/unused-public": "^0.2.0"
+        "tomasvotruba/class-leak": "^0.2"
     },
     "autoload": {
         "psr-4": {

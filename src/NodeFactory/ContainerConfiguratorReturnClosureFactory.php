@@ -32,7 +32,7 @@ final class ContainerConfiguratorReturnClosureFactory
      */
     public function __construct(
         private readonly ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
-        private readonly array $caseConverters,
+        private readonly iterable $caseConverters,
         private readonly ContainerNestedNodesFactory $containerNestedNodesFactory
     ) {
     }
