@@ -8,6 +8,9 @@ use ReflectionClass;
 
 final class ConstantNameFromValueResolver
 {
+    /**
+     * @param class-string $class
+     */
     public function resolveFromValueAndClass(int|string $constantValue, string $class): ?string
     {
         $reflectionClass = new ReflectionClass($class);

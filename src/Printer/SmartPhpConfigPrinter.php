@@ -22,7 +22,7 @@ final class SmartPhpConfigPrinter
     }
 
     /**
-     * @param array<string, mixed> $configuredServices
+     * @param array<class-string, mixed> $configuredServices
      */
     public function printConfiguredServices(array $configuredServices): string
     {
@@ -44,6 +44,8 @@ final class SmartPhpConfigPrinter
 
     /**
      * @param mixed[] $configuration
+     * @param class-string $class
+     *
      * @return array{calls: mixed[]}
      */
     private function createServiceConfiguration(array $configuration, string $class): array

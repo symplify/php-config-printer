@@ -1,5 +1,8 @@
 parameters:
-    level: 6
+    level: 8
+
+    errorFormat: symplify
+    treatPhpDocTypesAsCertain: false
 
     paths:
         - src
@@ -11,4 +14,11 @@ parameters:
         - '*/tests/**/data/*'
 
     ignoreErrors:
-        - '#Parameter \#1 \$items of class PhpParser\\Node\\Expr\\Array_ constructor expects array<PhpParser\\Node\\Expr\\ArrayItem\|null>, array<PhpParser\\Node\\Arg> given#'
+
+        # php version depends on runtime
+        -
+            message: '#Comparison operation ">=" between int<(.*?), 80499> and 80000 is always true#'
+            path: src/NodeFactory/ArgsNodeFactory.php
+
+        # unclear what to do
+        - '#Parameter \#1 \$items of class PhpParser\\Node\\Expr\\Array_ constructor expects array<PhpParser\\Node\\ArrayItem>, array<PhpParser\\Node\\Arg> given#'

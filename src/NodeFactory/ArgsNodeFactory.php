@@ -7,9 +7,9 @@ namespace Symplify\PhpConfigPrinter\NodeFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -171,7 +171,7 @@ final class ArgsNodeFactory
     {
         if (is_string($key) && $isForConfig) {
             $key = $this->resolveExpr($key);
-            $args[] = new Arg(new ArrayItem($expr, $key));
+            $args[] = new Arg(new Array_([new ArrayItem($expr, $key)]));
 
             return $args;
         }

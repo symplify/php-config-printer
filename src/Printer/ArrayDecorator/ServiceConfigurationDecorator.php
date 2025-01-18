@@ -13,6 +13,9 @@ final class ServiceConfigurationDecorator
     ) {
     }
 
+    /**
+     * @param class-string $class
+     */
     public function decorate(mixed $configuration, string $class): mixed
     {
         if (! is_array($configuration)) {
@@ -24,6 +27,8 @@ final class ServiceConfigurationDecorator
 
     /**
      * @param array<string|int, mixed> $configuration
+     * @param class-string $class
+     *
      * @return mixed[]
      */
     private function decorateClassConstantKeys(array $configuration, string $class): array

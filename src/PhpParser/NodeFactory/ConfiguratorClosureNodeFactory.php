@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Symplify\PhpConfigPrinter\PhpParser\NodeFactory;
 
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\Closure;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
@@ -167,7 +167,7 @@ final class ConfiguratorClosureNodeFactory
 
     /**
      * @param Expr[][] $extensionExprs
-     * @return array<ArrayItem|null>
+     * @return array<ArrayItem>
      */
     private function resolveMergedArrayItems(array $extensionExprs): array
     {

@@ -62,7 +62,7 @@ final class PathRoutingCaseConverter implements RoutingCaseConverterInterface
                 unset($nestedValues[RouteDefaults::CONTROLLER]);
             }
 
-            if (! is_array($nestedValues) || (is_array($nestedValues) && $nestedValues !== [])) {
+            if (! is_array($nestedValues) || ($nestedValues !== [])) {
                 $args = $this->argsNodeFactory->createFromValues([$nestedValues]);
                 $methodCall = new MethodCall($methodCall, $nestedKey, $args);
             }
