@@ -12,12 +12,12 @@ use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
  * @api
  * @see \Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\SmartPhpConfigPrinterTest
  */
-final class SmartPhpConfigPrinter
+final readonly class SmartPhpConfigPrinter
 {
     public function __construct(
-        private readonly ContainerConfiguratorReturnClosureFactory $configuratorReturnClosureFactory,
-        private readonly PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter,
-        private readonly ServiceConfigurationDecorator $serviceConfigurationDecorator
+        private ContainerConfiguratorReturnClosureFactory $configuratorReturnClosureFactory,
+        private PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter,
+        private ServiceConfigurationDecorator $serviceConfigurationDecorator
     ) {
     }
 

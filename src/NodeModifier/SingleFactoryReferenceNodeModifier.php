@@ -14,7 +14,7 @@ use PhpParser\Node\Scalar\String_;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class SingleFactoryReferenceNodeModifier
+final readonly class SingleFactoryReferenceNodeModifier
 {
     /**
      * @see https://regex101.com/r/Smydt1/2
@@ -23,7 +23,7 @@ final class SingleFactoryReferenceNodeModifier
     private const FACTORY_REGEX = '#(?<callee>.*?)(?<operator>\:{1,2})(?<method_name>\w+)#';
 
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory
+        private ArgsNodeFactory $argsNodeFactory
     ) {
     }
 

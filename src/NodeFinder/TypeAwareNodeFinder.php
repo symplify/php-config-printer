@@ -11,10 +11,10 @@ use PhpParser\NodeFinder;
  * @api
  * @todo remove after https://github.com/nikic/PHP-Parser/pull/869 is released
  */
-final class TypeAwareNodeFinder
+final readonly class TypeAwareNodeFinder
 {
     public function __construct(
-        private readonly NodeFinder $nodeFinder
+        private NodeFinder $nodeFinder
     ) {
     }
 

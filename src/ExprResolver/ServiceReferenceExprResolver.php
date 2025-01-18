@@ -10,10 +10,10 @@ use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class ServiceReferenceExprResolver
+final readonly class ServiceReferenceExprResolver
 {
     public function __construct(
-        private readonly StringExprResolver $stringExprResolver
+        private StringExprResolver $stringExprResolver
     ) {
     }
 

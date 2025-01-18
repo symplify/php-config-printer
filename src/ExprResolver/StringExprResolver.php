@@ -16,7 +16,7 @@ use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\ConstantNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class StringExprResolver
+final readonly class StringExprResolver
 {
     /**
      * @see https://regex101.com/r/laf2wR/1
@@ -25,8 +25,8 @@ final class StringExprResolver
     private const TWIG_HTML_XML_SUFFIX_REGEX = '#\.(twig|html|xml)$#';
 
     public function __construct(
-        private readonly ConstantNodeFactory $constantNodeFactory,
-        private readonly CommonNodeFactory $commonNodeFactory
+        private ConstantNodeFactory $constantNodeFactory,
+        private CommonNodeFactory $commonNodeFactory
     ) {
     }
 

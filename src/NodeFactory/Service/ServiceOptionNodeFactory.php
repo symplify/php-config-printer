@@ -10,14 +10,14 @@ use Symplify\PhpConfigPrinter\ServiceOptionAnalyzer\ServiceOptionAnalyzer;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 use Webmozart\Assert\Assert;
 
-final class ServiceOptionNodeFactory
+final readonly class ServiceOptionNodeFactory
 {
     /**
      * @param ServiceOptionsKeyYamlToPhpFactoryInterface[] $serviceOptionKeyYamlToPhpFactories
      */
     public function __construct(
-        private readonly ServiceOptionAnalyzer $serviceOptionAnalyzer,
-        private readonly iterable $serviceOptionKeyYamlToPhpFactories
+        private ServiceOptionAnalyzer $serviceOptionAnalyzer,
+        private iterable $serviceOptionKeyYamlToPhpFactories
     ) {
         Assert::notEmpty($serviceOptionKeyYamlToPhpFactories);
         Assert::allIsInstanceOf($serviceOptionKeyYamlToPhpFactories, ServiceOptionsKeyYamlToPhpFactoryInterface::class);

@@ -9,10 +9,10 @@ use PhpParser\Node\Expr\Array_;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class TaggedReturnsCloneResolver
+final readonly class TaggedReturnsCloneResolver
 {
     public function __construct(
-        private readonly ServiceReferenceExprResolver $serviceReferenceExprResolver
+        private ServiceReferenceExprResolver $serviceReferenceExprResolver
     ) {
     }
 

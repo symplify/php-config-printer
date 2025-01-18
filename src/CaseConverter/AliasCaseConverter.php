@@ -21,7 +21,7 @@ use Symplify\PhpConfigPrinter\ValueObject\MethodName;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class AliasCaseConverter implements CaseConverterInterface
+final readonly class AliasCaseConverter implements CaseConverterInterface
 {
     /**
      * @see https://regex101.com/r/BwXkfO/2/
@@ -36,9 +36,9 @@ final class AliasCaseConverter implements CaseConverterInterface
     private const NAMED_ALIAS_REGEX = '#\w+\s+\$\w+#';
 
     public function __construct(
-        private readonly CommonNodeFactory $commonNodeFactory,
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ServiceOptionNodeFactory $serviceOptionNodeFactory,
+        private CommonNodeFactory $commonNodeFactory,
+        private ArgsNodeFactory $argsNodeFactory,
+        private ServiceOptionNodeFactory $serviceOptionNodeFactory,
     ) {
     }
 

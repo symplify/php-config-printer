@@ -6,15 +6,15 @@ namespace Symplify\PhpConfigPrinter\ValueObject;
 
 use Stringable;
 
-final class FullyQualifiedImport implements Stringable
+final readonly class FullyQualifiedImport implements Stringable
 {
     /**
      * @param ImportType::* $type
      */
     public function __construct(
-        private readonly string $type,
-        private readonly string $fullyQualified,
-        private readonly string $shortClassName
+        private string $type,
+        private string $fullyQualified,
+        private string $shortClassName
     ) {
     }
 

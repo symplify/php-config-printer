@@ -27,7 +27,7 @@ use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
  *
  * imports: <---
  */
-final class ImportCaseConverter implements CaseConverterInterface
+final readonly class ImportCaseConverter implements CaseConverterInterface
 {
     /**
      * @see https://regex101.com/r/hOTdIE/1
@@ -36,8 +36,8 @@ final class ImportCaseConverter implements CaseConverterInterface
     private const INPUT_SUFFIX_REGEX = '#\.(yml|yaml|xml)$#';
 
     public function __construct(
-        private readonly YamlArgumentSorter $yamlArgumentSorter,
-        private readonly CommonNodeFactory $commonNodeFactory
+        private YamlArgumentSorter $yamlArgumentSorter,
+        private CommonNodeFactory $commonNodeFactory
     ) {
     }
 

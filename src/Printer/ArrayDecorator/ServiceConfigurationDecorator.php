@@ -6,10 +6,10 @@ namespace Symplify\PhpConfigPrinter\Printer\ArrayDecorator;
 
 use Symplify\PhpConfigPrinter\Reflection\ConstantNameFromValueResolver;
 
-final class ServiceConfigurationDecorator
+final readonly class ServiceConfigurationDecorator
 {
     public function __construct(
-        private readonly ConstantNameFromValueResolver $constantNameFromValueResolver,
+        private ConstantNameFromValueResolver $constantNameFromValueResolver,
     ) {
     }
 

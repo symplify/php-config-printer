@@ -14,10 +14,10 @@ use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class NameOnlyServiceCaseConverter implements CaseConverterInterface
+final readonly class NameOnlyServiceCaseConverter implements CaseConverterInterface
 {
     public function __construct(
-        private readonly CommonNodeFactory $commonNodeFactory
+        private CommonNodeFactory $commonNodeFactory
     ) {
     }
 

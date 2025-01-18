@@ -9,10 +9,10 @@ use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFacto
 use Symplify\PhpConfigPrinter\NodeFactory\Service\SingleServicePhpNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
-final class PropertiesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class PropertiesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     public function __construct(
-        private readonly SingleServicePhpNodeFactory $singleServicePhpNodeFactory
+        private SingleServicePhpNodeFactory $singleServicePhpNodeFactory
     ) {
     }
 

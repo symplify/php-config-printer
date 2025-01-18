@@ -21,7 +21,7 @@ use Symplify\PhpConfigPrinter\ExprResolver\TaggedReturnsCloneResolver;
 use Symplify\PhpConfigPrinter\ExprResolver\TaggedServiceResolver;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class ArgsNodeFactory
+final readonly class ArgsNodeFactory
 {
     /**
      * @var string
@@ -33,13 +33,13 @@ final class ArgsNodeFactory
      */
     private const TAG_RETURNS_CLONE = 'returns_clone';
 
-    private readonly bool $isPhpNamedArguments;
+    private bool $isPhpNamedArguments;
 
     public function __construct(
-        private readonly StringExprResolver $stringExprResolver,
-        private readonly TaggedReturnsCloneResolver $taggedReturnsCloneResolver,
-        private readonly TaggedServiceResolver $taggedServiceResolver,
-        private readonly NewValueObjectFactory $newValueObjectFactory,
+        private StringExprResolver $stringExprResolver,
+        private TaggedReturnsCloneResolver $taggedReturnsCloneResolver,
+        private TaggedServiceResolver $taggedServiceResolver,
+        private NewValueObjectFactory $newValueObjectFactory,
     ) {
         $this->isPhpNamedArguments = PHP_VERSION_ID >= 80000;
     }

@@ -10,10 +10,10 @@ use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFacto
 use Symplify\PhpConfigPrinter\Exception\NotImplementedYetException;
 use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 
-final class SharedPublicServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class SharedPublicServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     public function __construct(
-        private readonly CommonNodeFactory $commonNodeFactory,
+        private CommonNodeFactory $commonNodeFactory,
     ) {
     }
 

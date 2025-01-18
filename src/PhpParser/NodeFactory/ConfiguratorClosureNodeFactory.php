@@ -21,10 +21,10 @@ use Symplify\PhpConfigPrinter\Exception\ShouldNotHappenException;
 use Symplify\PhpConfigPrinter\Naming\VariableNameResolver;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
-final class ConfiguratorClosureNodeFactory
+final readonly class ConfiguratorClosureNodeFactory
 {
     public function __construct(
-        private readonly VariableNameResolver $variableNameResolver,
+        private VariableNameResolver $variableNameResolver,
     ) {
     }
 

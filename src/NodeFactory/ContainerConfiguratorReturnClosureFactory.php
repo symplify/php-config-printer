@@ -25,15 +25,15 @@ use Symplify\PhpConfigPrinter\ValueObject\VariableMethodName;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class ContainerConfiguratorReturnClosureFactory
+final readonly class ContainerConfiguratorReturnClosureFactory
 {
     /**
      * @param CaseConverterInterface[] $caseConverters
      */
     public function __construct(
-        private readonly ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
-        private readonly iterable $caseConverters,
-        private readonly ContainerNestedNodesFactory $containerNestedNodesFactory
+        private ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
+        private iterable $caseConverters,
+        private ContainerNestedNodesFactory $containerNestedNodesFactory
     ) {
     }
 

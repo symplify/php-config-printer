@@ -14,10 +14,10 @@ use Symplify\PhpConfigPrinter\ValueObject\MethodName;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class ServicesDefaultsCaseConverter implements CaseConverterInterface
+final readonly class ServicesDefaultsCaseConverter implements CaseConverterInterface
 {
     public function __construct(
-        private readonly AutoBindNodeFactory $autoBindNodeFactory
+        private AutoBindNodeFactory $autoBindNodeFactory
     ) {
     }
 
