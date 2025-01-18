@@ -13,12 +13,12 @@ use Symplify\PhpConfigPrinter\ServiceOptionAnalyzer\ServiceOptionAnalyzer;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
-final class BindAutowireAutoconfigureServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class BindAutowireAutoconfigureServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     public function __construct(
-        private readonly CommonNodeFactory $commonNodeFactory,
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ServiceOptionAnalyzer $serviceOptionAnalyzer
+        private CommonNodeFactory $commonNodeFactory,
+        private ArgsNodeFactory $argsNodeFactory,
+        private ServiceOptionAnalyzer $serviceOptionAnalyzer
     ) {
     }
 

@@ -8,10 +8,10 @@ use PhpParser\Node\Expr;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class TaggedServiceResolver
+final readonly class TaggedServiceResolver
 {
     public function __construct(
-        private readonly ServiceReferenceExprResolver $serviceReferenceExprResolver
+        private ServiceReferenceExprResolver $serviceReferenceExprResolver
     ) {
     }
 

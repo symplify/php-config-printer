@@ -6,15 +6,15 @@ namespace Symplify\PhpConfigPrinter\NodeModifier;
 
 use Nette\Utils\Strings;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class SingleFactoryReferenceNodeModifier
+final readonly class SingleFactoryReferenceNodeModifier
 {
     /**
      * @see https://regex101.com/r/Smydt1/2
@@ -23,7 +23,7 @@ final class SingleFactoryReferenceNodeModifier
     private const FACTORY_REGEX = '#(?<callee>.*?)(?<operator>\:{1,2})(?<method_name>\w+)#';
 
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory
+        private ArgsNodeFactory $argsNodeFactory
     ) {
     }
 
@@ -47,10 +47,6 @@ final class SingleFactoryReferenceNodeModifier
         }
 
         $singleArrayItem = $singleArgValue->items[0];
-        if (! $singleArrayItem instanceof ArrayItem) {
-            return;
-        }
-
         if (! $singleArrayItem->value instanceof String_) {
             return;
         }

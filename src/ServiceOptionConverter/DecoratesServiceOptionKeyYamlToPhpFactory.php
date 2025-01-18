@@ -12,7 +12,7 @@ use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Symplify\PhpConfigPrinter\Sorter\YamlArgumentSorter;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
-final class DecoratesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class DecoratesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     /**
      * @var string
@@ -30,9 +30,9 @@ final class DecoratesServiceOptionKeyYamlToPhpFactory implements ServiceOptionsK
     private const DECORATION_PRIORITY = 'decoration_priority';
 
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly YamlArgumentSorter $yamlArgumentSorter,
-        private readonly CommonNodeFactory $commonNodeFactory
+        private ArgsNodeFactory $argsNodeFactory,
+        private YamlArgumentSorter $yamlArgumentSorter,
+        private CommonNodeFactory $commonNodeFactory
     ) {
     }
 

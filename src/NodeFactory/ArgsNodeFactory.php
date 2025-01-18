@@ -7,9 +7,9 @@ namespace Symplify\PhpConfigPrinter\NodeFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -21,7 +21,7 @@ use Symplify\PhpConfigPrinter\ExprResolver\TaggedReturnsCloneResolver;
 use Symplify\PhpConfigPrinter\ExprResolver\TaggedServiceResolver;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class ArgsNodeFactory
+final readonly class ArgsNodeFactory
 {
     /**
      * @var string
@@ -33,13 +33,13 @@ final class ArgsNodeFactory
      */
     private const TAG_RETURNS_CLONE = 'returns_clone';
 
-    private readonly bool $isPhpNamedArguments;
+    private bool $isPhpNamedArguments;
 
     public function __construct(
-        private readonly StringExprResolver $stringExprResolver,
-        private readonly TaggedReturnsCloneResolver $taggedReturnsCloneResolver,
-        private readonly TaggedServiceResolver $taggedServiceResolver,
-        private readonly NewValueObjectFactory $newValueObjectFactory,
+        private StringExprResolver $stringExprResolver,
+        private TaggedReturnsCloneResolver $taggedReturnsCloneResolver,
+        private TaggedServiceResolver $taggedServiceResolver,
+        private NewValueObjectFactory $newValueObjectFactory,
     ) {
         $this->isPhpNamedArguments = PHP_VERSION_ID >= 80000;
     }
@@ -171,7 +171,7 @@ final class ArgsNodeFactory
     {
         if (is_string($key) && $isForConfig) {
             $key = $this->resolveExpr($key);
-            $args[] = new Arg(new ArrayItem($expr, $key));
+            $args[] = new Arg(new Array_([new ArrayItem($expr, $key)]));
 
             return $args;
         }

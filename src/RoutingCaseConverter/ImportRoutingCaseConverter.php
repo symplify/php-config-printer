@@ -16,7 +16,7 @@ use Symplify\PhpConfigPrinter\Routing\ControllerSplitter;
 use Symplify\PhpConfigPrinter\StringFormatConverter;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
-final class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
+final readonly class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
 {
     /**
      * @var string[]
@@ -77,8 +77,8 @@ final class ImportRoutingCaseConverter implements RoutingCaseConverterInterface
     private const METHODS = 'methods';
 
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ControllerSplitter $controllerSplitter
+        private ArgsNodeFactory $argsNodeFactory,
+        private ControllerSplitter $controllerSplitter
     ) {
     }
 

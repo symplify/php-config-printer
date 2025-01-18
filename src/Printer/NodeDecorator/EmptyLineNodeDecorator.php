@@ -14,10 +14,10 @@ use PhpParser\Node\Stmt\Nop;
 use Symplify\PhpConfigPrinter\Exception\ShouldNotHappenException;
 use Symplify\PhpConfigPrinter\NodeFinder\TypeAwareNodeFinder;
 
-final class EmptyLineNodeDecorator
+final readonly class EmptyLineNodeDecorator
 {
     public function __construct(
-        private readonly TypeAwareNodeFinder $typeAwareNodeFinder
+        private TypeAwareNodeFinder $typeAwareNodeFinder
     ) {
     }
 

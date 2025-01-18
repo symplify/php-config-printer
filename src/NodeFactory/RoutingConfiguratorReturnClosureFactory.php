@@ -9,14 +9,14 @@ use PhpParser\Node\Stmt\Return_;
 use Symplify\PhpConfigPrinter\Contract\RoutingCaseConverterInterface;
 use Symplify\PhpConfigPrinter\PhpParser\NodeFactory\ConfiguratorClosureNodeFactory;
 
-final class RoutingConfiguratorReturnClosureFactory
+final readonly class RoutingConfiguratorReturnClosureFactory
 {
     /**
      * @param RoutingCaseConverterInterface[] $routingCaseConverters
      */
     public function __construct(
-        private readonly ConfiguratorClosureNodeFactory $containerConfiguratorClosureNodeFactory,
-        private readonly iterable $routingCaseConverters
+        private ConfiguratorClosureNodeFactory $containerConfiguratorClosureNodeFactory,
+        private iterable $routingCaseConverters
     ) {
     }
 

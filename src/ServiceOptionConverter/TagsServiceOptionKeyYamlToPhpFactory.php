@@ -14,7 +14,7 @@ use Symplify\PhpConfigPrinter\Contract\Converter\ServiceOptionsKeyYamlToPhpFacto
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\YamlServiceKey;
 
-final class TagsServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class TagsServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     /**
      * @var string
@@ -22,7 +22,7 @@ final class TagsServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYam
     private const TAG = 'tag';
 
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory
+        private ArgsNodeFactory $argsNodeFactory
     ) {
     }
 

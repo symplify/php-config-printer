@@ -9,10 +9,10 @@ use Symplify\PhpConfigPrinter\Contract\CaseConverterInterface;
 use Symplify\PhpConfigPrinter\NodeFactory\Service\ServicesPhpNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class ResourceCaseConverter implements CaseConverterInterface
+final readonly class ResourceCaseConverter implements CaseConverterInterface
 {
     public function __construct(
-        private readonly ServicesPhpNodeFactory $servicesPhpNodeFactory
+        private ServicesPhpNodeFactory $servicesPhpNodeFactory
     ) {
     }
 

@@ -6,13 +6,16 @@ namespace Symplify\PhpConfigPrinter\Printer\ArrayDecorator;
 
 use Symplify\PhpConfigPrinter\Reflection\ConstantNameFromValueResolver;
 
-final class ServiceConfigurationDecorator
+final readonly class ServiceConfigurationDecorator
 {
     public function __construct(
-        private readonly ConstantNameFromValueResolver $constantNameFromValueResolver,
+        private ConstantNameFromValueResolver $constantNameFromValueResolver,
     ) {
     }
 
+    /**
+     * @param class-string $class
+     */
     public function decorate(mixed $configuration, string $class): mixed
     {
         if (! is_array($configuration)) {
@@ -24,6 +27,8 @@ final class ServiceConfigurationDecorator
 
     /**
      * @param array<string|int, mixed> $configuration
+     * @param class-string $class
+     *
      * @return mixed[]
      */
     private function decorateClassConstantKeys(array $configuration, string $class): array

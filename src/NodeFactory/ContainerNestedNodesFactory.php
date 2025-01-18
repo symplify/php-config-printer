@@ -7,10 +7,10 @@ namespace Symplify\PhpConfigPrinter\NodeFactory;
 use PhpParser\Node\Stmt;
 use Symplify\PhpConfigPrinter\CaseConverter\NestedCaseConverter\InstanceOfNestedCaseConverter;
 
-final class ContainerNestedNodesFactory
+final readonly class ContainerNestedNodesFactory
 {
     public function __construct(
-        private readonly InstanceOfNestedCaseConverter $instanceOfNestedCaseConverter
+        private InstanceOfNestedCaseConverter $instanceOfNestedCaseConverter
     ) {
     }
 

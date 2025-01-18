@@ -12,10 +12,10 @@ use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 
-final class SingleServicePhpNodeFactory
+final readonly class SingleServicePhpNodeFactory
 {
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory
+        private ArgsNodeFactory $argsNodeFactory
     ) {
     }
 

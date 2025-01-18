@@ -14,7 +14,7 @@ use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
-final class ServicesPhpNodeFactory
+final readonly class ServicesPhpNodeFactory
 {
     /**
      * @var string
@@ -22,9 +22,9 @@ final class ServicesPhpNodeFactory
     private const EXCLUDE = 'exclude';
 
     public function __construct(
-        private readonly CommonNodeFactory $commonNodeFactory,
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ServiceOptionNodeFactory $serviceOptionNodeFactory,
+        private CommonNodeFactory $commonNodeFactory,
+        private ArgsNodeFactory $argsNodeFactory,
+        private ServiceOptionNodeFactory $serviceOptionNodeFactory,
     ) {
     }
 

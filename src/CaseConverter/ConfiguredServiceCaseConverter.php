@@ -15,11 +15,11 @@ use Symplify\PhpConfigPrinter\ValueObject\MethodName;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class ConfiguredServiceCaseConverter implements CaseConverterInterface
+final readonly class ConfiguredServiceCaseConverter implements CaseConverterInterface
 {
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ServiceOptionNodeFactory $serviceOptionNodeFactory
+        private ArgsNodeFactory $argsNodeFactory,
+        private ServiceOptionNodeFactory $serviceOptionNodeFactory
     ) {
     }
 

@@ -16,13 +16,13 @@ use Symplify\PhpConfigPrinter\Sorter\FullyQualifiedImportSorter;
 use Symplify\PhpConfigPrinter\ValueObject\FullyQualifiedImport;
 use Symplify\PhpConfigPrinter\ValueObject\ImportType;
 
-final class ImportFullyQualifiedNamesNodeTraverser
+final readonly class ImportFullyQualifiedNamesNodeTraverser
 {
     public function __construct(
-        private readonly ParentConnectingVisitor $parentConnectingVisitor,
-        private readonly ImportFullyQualifiedNamesNodeVisitor $importFullyQualifiedNamesNodeVisitor,
-        private readonly FullyQualifiedImportSorter $fullyQualifiedImportSorter,
-        private readonly BuilderFactory $builderFactory
+        private ParentConnectingVisitor $parentConnectingVisitor,
+        private ImportFullyQualifiedNamesNodeVisitor $importFullyQualifiedNamesNodeVisitor,
+        private FullyQualifiedImportSorter $fullyQualifiedImportSorter,
+        private BuilderFactory $builderFactory
     ) {
     }
 

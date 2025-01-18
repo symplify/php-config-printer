@@ -16,11 +16,11 @@ use Symplify\PhpConfigPrinter\Routing\ControllerSplitter;
 use Symplify\PhpConfigPrinter\ValueObject\Routing\RouteDefaults;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 
-final class PathRoutingCaseConverter implements RoutingCaseConverterInterface
+final readonly class PathRoutingCaseConverter implements RoutingCaseConverterInterface
 {
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly ControllerSplitter $controllerSplitter
+        private ArgsNodeFactory $argsNodeFactory,
+        private ControllerSplitter $controllerSplitter
     ) {
     }
 
@@ -62,7 +62,7 @@ final class PathRoutingCaseConverter implements RoutingCaseConverterInterface
                 unset($nestedValues[RouteDefaults::CONTROLLER]);
             }
 
-            if (! is_array($nestedValues) || (is_array($nestedValues) && $nestedValues !== [])) {
+            if (! is_array($nestedValues) || ($nestedValues !== [])) {
                 $args = $this->argsNodeFactory->createFromValues([$nestedValues]);
                 $methodCall = new MethodCall($methodCall, $nestedKey, $args);
             }

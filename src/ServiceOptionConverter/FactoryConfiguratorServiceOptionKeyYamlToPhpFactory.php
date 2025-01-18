@@ -10,11 +10,11 @@ use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\NodeModifier\SingleFactoryReferenceNodeModifier;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class FactoryConfiguratorServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
+final readonly class FactoryConfiguratorServiceOptionKeyYamlToPhpFactory implements ServiceOptionsKeyYamlToPhpFactoryInterface
 {
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly SingleFactoryReferenceNodeModifier $singleFactoryReferenceNodeModifier
+        private ArgsNodeFactory $argsNodeFactory,
+        private SingleFactoryReferenceNodeModifier $singleFactoryReferenceNodeModifier
     ) {
     }
 

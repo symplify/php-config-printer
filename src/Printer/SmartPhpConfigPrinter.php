@@ -12,17 +12,17 @@ use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
  * @api
  * @see \Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\SmartPhpConfigPrinterTest
  */
-final class SmartPhpConfigPrinter
+final readonly class SmartPhpConfigPrinter
 {
     public function __construct(
-        private readonly ContainerConfiguratorReturnClosureFactory $configuratorReturnClosureFactory,
-        private readonly PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter,
-        private readonly ServiceConfigurationDecorator $serviceConfigurationDecorator
+        private ContainerConfiguratorReturnClosureFactory $configuratorReturnClosureFactory,
+        private PhpParserPhpConfigPrinter $phpParserPhpConfigPrinter,
+        private ServiceConfigurationDecorator $serviceConfigurationDecorator
     ) {
     }
 
     /**
-     * @param array<string, mixed> $configuredServices
+     * @param array<class-string, mixed> $configuredServices
      */
     public function printConfiguredServices(array $configuredServices): string
     {
@@ -44,6 +44,8 @@ final class SmartPhpConfigPrinter
 
     /**
      * @param mixed[] $configuration
+     * @param class-string $class
+     *
      * @return array{calls: mixed[]}
      */
     private function createServiceConfiguration(array $configuration, string $class): array

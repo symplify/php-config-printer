@@ -9,11 +9,11 @@ use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\ServiceOptionConverter\TagsServiceOptionKeyYamlToPhpFactory;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class AutoBindNodeFactory
+final readonly class AutoBindNodeFactory
 {
     public function __construct(
-        private readonly ArgsNodeFactory $argsNodeFactory,
-        private readonly TagsServiceOptionKeyYamlToPhpFactory $tagsServiceOptionKeyYamlToPhpFactory
+        private ArgsNodeFactory $argsNodeFactory,
+        private TagsServiceOptionKeyYamlToPhpFactory $tagsServiceOptionKeyYamlToPhpFactory
     ) {
     }
 

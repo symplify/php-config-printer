@@ -31,6 +31,7 @@ final class NewValueObjectFactory
     }
 
     /**
+     * @param class-string $valueObjectClass
      * @return mixed[]
      */
     private function resolvePropertyValuesFromValueObject(string $valueObjectClass, object $valueObject): array

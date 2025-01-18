@@ -6,9 +6,9 @@ namespace Symplify\PhpConfigPrinter\NodeFactory;
 
 use Nette\Utils\Json;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\BinaryOp\Identical;
 use PhpParser\Node\Expr\MethodCall;
@@ -25,15 +25,15 @@ use Symplify\PhpConfigPrinter\ValueObject\VariableMethodName;
 use Symplify\PhpConfigPrinter\ValueObject\VariableName;
 use Symplify\PhpConfigPrinter\ValueObject\YamlKey;
 
-final class ContainerConfiguratorReturnClosureFactory
+final readonly class ContainerConfiguratorReturnClosureFactory
 {
     /**
      * @param CaseConverterInterface[] $caseConverters
      */
     public function __construct(
-        private readonly ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
-        private readonly iterable $caseConverters,
-        private readonly ContainerNestedNodesFactory $containerNestedNodesFactory
+        private ConfiguratorClosureNodeFactory $configuratorClosureNodeFactory,
+        private iterable $caseConverters,
+        private ContainerNestedNodesFactory $containerNestedNodesFactory
     ) {
     }
 
@@ -66,7 +66,7 @@ final class ContainerConfiguratorReturnClosureFactory
     }
 
     /**
-     * @param array<string, mixed[]> $yamlData
+     * @param array<string|int, mixed[]> $yamlData
      * @return Stmt[]
      */
     private function createStmtsFromCaseConverters(array $yamlData): array

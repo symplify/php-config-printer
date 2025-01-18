@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Symplify\PhpConfigPrinter\ExprResolver;
 
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
-final class TaggedReturnsCloneResolver
+final readonly class TaggedReturnsCloneResolver
 {
     public function __construct(
-        private readonly ServiceReferenceExprResolver $serviceReferenceExprResolver
+        private ServiceReferenceExprResolver $serviceReferenceExprResolver
     ) {
     }
 
