@@ -8,7 +8,6 @@ use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symplify\PhpConfigPrinter\Naming\ReferenceFunctionNameResolver;
-use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
 final readonly class TaggedReturnsCloneResolver
 {

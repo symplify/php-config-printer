@@ -13,7 +13,6 @@ use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
 use Symplify\PhpConfigPrinter\Naming\ReferenceFunctionNameResolver;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
-use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
 final readonly class SingleFactoryReferenceNodeModifier
 {
