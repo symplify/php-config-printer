@@ -41,6 +41,11 @@ final readonly class AutoBindNodeFactory
             }
 
             if ($key === YamlKey::BIND) {
+                // skip empty definitions
+                if (empty($yaml[YamlKey::BIND])) {
+                    continue;
+                }
+
                 $methodCall = $this->createBindMethodCall($methodCall, $yaml[YamlKey::BIND]);
             }
 
