@@ -11,6 +11,7 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
+use Symplify\PhpConfigPrinter\Naming\ReferenceFunctionNameResolver;
 use Symplify\PhpConfigPrinter\NodeFactory\ArgsNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
@@ -70,6 +71,7 @@ final readonly class SingleFactoryReferenceNodeModifier
     {
         $serviceFuncCallArgs = $this->argsNodeFactory->createFromValues([$serviceName]);
 
-        return new FuncCall(new FullyQualified(FunctionName::SERVICE), $serviceFuncCallArgs);
+        $functionName = ReferenceFunctionNameResolver::resolve();
+        return new FuncCall(new FullyQualified($functionName), $serviceFuncCallArgs);
     }
 }

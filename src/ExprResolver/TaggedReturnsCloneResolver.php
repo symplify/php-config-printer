@@ -7,6 +7,7 @@ namespace Symplify\PhpConfigPrinter\ExprResolver;
 use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
 use Symfony\Component\Yaml\Tag\TaggedValue;
+use Symplify\PhpConfigPrinter\Naming\ReferenceFunctionNameResolver;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
 
 final readonly class TaggedReturnsCloneResolver
@@ -23,7 +24,7 @@ final readonly class TaggedReturnsCloneResolver
         $expr = $this->serviceReferenceExprResolver->resolveServiceReferenceExpr(
             $serviceName,
             false,
-            FunctionName::SERVICE
+            ReferenceFunctionNameResolver::resolve()
         );
 
         return new Array_([new ArrayItem($expr)]);

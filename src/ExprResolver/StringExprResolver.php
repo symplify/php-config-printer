@@ -12,6 +12,7 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
+use Symplify\PhpConfigPrinter\Naming\ReferenceFunctionNameResolver;
 use Symplify\PhpConfigPrinter\NodeFactory\CommonNodeFactory;
 use Symplify\PhpConfigPrinter\NodeFactory\ConstantNodeFactory;
 use Symplify\PhpConfigPrinter\ValueObject\FunctionName;
@@ -69,7 +70,7 @@ final readonly class StringExprResolver
             return $this->resolveServiceReferenceExpr(
                 $value,
                 $skipServiceReference,
-                FunctionName::SERVICE,
+                ReferenceFunctionNameResolver::resolve(),
                 $isRoutingImport
             );
         }
