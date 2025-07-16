@@ -7,7 +7,7 @@
         "ext-ctype": "*",
         "nette/utils": "^4.0",
         "nikic/php-parser": "^5.5",
-        "symfony/dependency-injection": "^6.4|^7.3",
+        "symfony/dependency-injection": "^6.0|^7.0",
         "symfony/service-contracts": "^3.6",
         "symfony/yaml": "^6.4",
         "webmozart/assert": "^1.11"
