@@ -13,10 +13,10 @@ abstract class AbstractTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $kernel = new TestKernel('test', true);
-        $kernel->boot();
+        $testKernel = new TestKernel('test', true);
+        $testKernel->boot();
 
-        $this->container = $kernel->getContainer();
+        $this->container = $testKernel->getContainer();
     }
 
     /**
