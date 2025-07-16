@@ -17,6 +17,13 @@ final class ReferenceFunctionNameResolver
      */
     public static function resolve(): string
     {
+        $symfonyFunctionsFile = getcwd() . '/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Loader/Configurator/ContainerConfigurator.php';
+
+        if (file_exists($symfonyFunctionsFile)) {
+            // this file must be included manually, as composer will only load it once function called
+            require_once $symfonyFunctionsFile;
+        }
+
         if (function_exists(FunctionName::REF)) {
             return FunctionName::REF;
         }

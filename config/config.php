@@ -37,7 +37,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/../src/RoutingCaseConverter'
     )->tag(RoutingCaseConverterInterface::class);
 
-
     $services->load(
         'Symplify\\PhpConfigPrinter\\ServiceOptionConverter\\',
         __DIR__ . '/../src/ServiceOptionConverter'

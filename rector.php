@@ -24,5 +24,4 @@ return RectorConfig::configure()
 
         // old value is needed
         \Rector\Php81\Rector\MethodCall\MyCLabsMethodCallToEnumConstRector::class,
-
     ]);

@@ -6,20 +6,20 @@ namespace Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter;
 
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
 use Symplify\PhpConfigPrinter\Printer\SmartPhpConfigPrinter;
-use Symplify\PhpConfigPrinter\Tests\HttpKernel\PhpConfigPrinterKernel;
+use Symplify\PhpConfigPrinter\Tests\AbstractTestCase;
 use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\ClassWithConstants;
 use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\FirstClass;
 use Symplify\PhpConfigPrinter\Tests\Printer\SmartPhpConfigPrinter\Source\SecondClass;
 
-final class SmartPhpConfigPrinterTest extends AbstractKernelTestCase
+final class SmartPhpConfigPrinterTest extends AbstractTestCase
 {
     private SmartPhpConfigPrinter $smartPhpConfigPrinter;
 
     protected function setUp(): void
     {
-        $this->bootKernel(PhpConfigPrinterKernel::class);
+        parent::setUp();
+
         $this->smartPhpConfigPrinter = $this->getService(SmartPhpConfigPrinter::class);
     }
 
