@@ -22,3 +22,8 @@ parameters:
 
         # unclear what to do
         - '#Parameter \#1 \$items of class PhpParser\\Node\\Expr\\Array_ constructor expects array<PhpParser\\Node\\ArrayItem>, array<PhpParser\\Node\\Arg> given#'
+
+        # runs also on older PHP versions, like 7.4+
+        -
+            message: '#Right side of && is always true#'
+            path:  src/NodeFactory/ArgsNodeFactory.php

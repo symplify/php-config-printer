@@ -2,7 +2,7 @@
 
 [![Downloads total](https://img.shields.io/packagist/dt/symplify/php-config-printer.svg?style=flat-square)](https://packagist.org/packages/symplify/php-config-printer/stats)
 
-Print Symfony services array with configuration to to plain PHP file format thanks to this simple php-parser wrapper
+Print Symfony services array with configuration to to plain PHP file format using [nikic/php-parser](https://github.com/nikic/PHP-Parser)
 
 ## Install
 
